@@ -1,4 +1,4 @@
-## Material de Clase: Introducción a Spring Boot y Estructura de Proyectos
+## Introducción a Spring Boot y Estructura de Proyectos
 
 ### Antes de Empezar: Preparación del Entorno
 

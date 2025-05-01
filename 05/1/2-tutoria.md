@@ -1,4 +1,4 @@
-## Tutoría: Construyendo y Depurando tu Primera API REST con Spring Boot
+## Tutoría: Entendiendo la estructura Spring y sus componentes
 
 ### Antes de Empezar: Prepara tu Proyecto
 
