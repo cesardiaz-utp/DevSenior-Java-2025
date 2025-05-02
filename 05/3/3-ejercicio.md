@@ -8,8 +8,6 @@ Aplicarás los principios SOLID (especialmente DIP y SRP) y utilizarás las herr
 
 Tendrás disponible en tu entorno Cursor AI el código del ejemplo "Antes" que vimos, compuesto por las clases `Product.java`, `ConcreteProductRepository.java`, `EmailNotificationService.java`, y `BadProductService.java`.
 
----
-
 ## Paso 1: Aplicando DIP a la Dependencia del Repositorio
 
 **Concepto:** El Principio de Inversión de Dependencia (DIP) nos dice que debemos depender de abstracciones (interfaces) en lugar de detalles (clases concretas). Actualmente, `BadProductService` depende directamente de `ConcreteProductRepository`. Vamos a invertir esta dependencia.
@@ -18,21 +16,21 @@ Tendrás disponible en tu entorno Cursor AI el código del ejemplo "Antes" que v
 
 **Pasos a seguir en Cursor AI:**
 
-1.  **Navega a `ConcreteProductRepository.java`:** Abre este archivo en el editor de Cursor AI.
-2.  **Extrae la Interfaz:** Haz clic derecho sobre el nombre de la clase `ConcreteProductRepository`. En el menú contextual, busca la opción "Refactor" (o similar) y selecciona "Extract Interface".
-3.  **Configura la Interfaz:**
+1. **Navega a `ConcreteProductRepository.java`:** Abre este archivo en el editor de Cursor AI.
+2. **Extrae la Interfaz:** Haz clic derecho sobre el nombre de la clase `ConcreteProductRepository`. En el menú contextual, busca la opción "Refactor" (o similar) y selecciona "Extract Interface".
+3. **Configura la Interfaz:**
     * Nombra la nueva interfaz `ProductRepository`.
     * Asegúrate de que el método `void save(Product product)` (y si existe, `Product findById(String id)`) esté seleccionado para incluir en la interfaz.
     * Haz clic en "OK" o "Refactor".
-4.  **Verifica el Resultado:** Cursor AI creará un nuevo archivo `ProductRepository.java` y modificará `ConcreteProductRepository.java` para que implemente esta nueva interfaz (`class ConcreteProductRepository implements ProductRepository`).
-5.  **Modifica `BadProductService`:** Abre `BadProductService.java`.
+4. **Verifica el Resultado:** Cursor AI creará un nuevo archivo `ProductRepository.java` y modificará `ConcreteProductRepository.java` para que implemente esta nueva interfaz (`class ConcreteProductRepository implements ProductRepository`).
+5. **Modifica `BadProductService`:** Abre `BadProductService.java`.
     * Elimina la línea donde se crea la instancia concreta: `ConcreteProductRepository repository = new ConcreteProductRepository();`.
     * Declara un campo privado cuyo tipo sea la *interfaz* que acabas de crear: `private final ProductRepository productRepository;`.
     * **Inyecta la Dependencia:** Crea un constructor para `BadProductService` que acepte un parámetro de tipo `ProductRepository` y asígnalo al campo. Añade la anotación `@Autowired` a este constructor.
         * **Ayuda de Cursor AI:** Después de declarar `private final ProductRepository productRepository;`, a menudo Cursor AI te sugerirá crear automáticamente el constructor con `@Autowired`. Acéptala si aparece, o escribe el constructor y `@Autowired` manualmente; Cursor AI te asistirá con la sintaxis.
-6.  **Actualiza el Uso del Repositorio:** En el método `addProduct`, cambia la llamada al método `save`: ya no usarás la variable `repository` creada localmente, sino el campo `productRepository` inyectado. La línea `repository.save(product);` se convierte en `productRepository.save(product);`.
-7.  **Verifica Dependencias:** (Opcional) Usa la función "Show Dependencies" en `BadProductService`. Deberías ver una dependencia a la *interfaz* `ProductRepository`, no a la clase concreta `ConcreteProductRepository`.
-8.  **Pregunta a Cursor AI:** Abre el chat y pregúntale a Cursor AI: "Looking at the refactored `BadProductService` and `ProductRepository`, how does this change apply the Dependency Inversion Principle?". Lee su explicación.
+6. **Actualiza el Uso del Repositorio:** En el método `addProduct`, cambia la llamada al método `save`: ya no usarás la variable `repository` creada localmente, sino el campo `productRepository` inyectado. La línea `repository.save(product);` se convierte en `productRepository.save(product);`.
+7. **Verifica Dependencias:** (Opcional) Usa la función "Show Dependencies" en `BadProductService`. Deberías ver una dependencia a la *interfaz* `ProductRepository`, no a la clase concreta `ConcreteProductRepository`.
+8. **Pregunta a Cursor AI:** Abre el chat y pregúntale a Cursor AI: "Looking at the refactored `BadProductService` and `ProductRepository`, how does this change apply the Dependency Inversion Principle?". Lee su explicación.
 
 **Código Resultante (Parcial - `BadProductService` después del Paso 1):**
 
@@ -76,8 +74,6 @@ public class BadProductService {
     // ...
 }
 ```
-
----
 
 ## Paso 2: Aplicando DIP a la Dependencia del Servicio de Notificación
 
@@ -191,6 +187,7 @@ public class BadProductService { // Podríamos empezar a pensar en renombrarla
 1. **Pregunta a Cursor AI**: "Looking at the refactored ProductService and ProductValidator, how do these classes now follow the Single Responsibility Principle?".
 
 **Código Resultante (Parcial - Clases después del Paso 3):**
+
 ```java
 // ProductValidator.java - Nueva Interfaz
 package com.example.yourproject.service.validation; // Ejemplo de paquete
@@ -279,7 +276,6 @@ public class ProductService { // Renombrada y mejor diseñada
     // ... Otros métodos del servicio ...
 }
 ```
----
 
 ## Revisión Final y Verificación
 
@@ -289,7 +285,5 @@ public class ProductService { // Renombrada y mejor diseñada
 * **Tu Tarea**: (Opcional) Si tenías un controlador que usaba el servicio, verifica que ahora se inyecta el nuevo `ProductService` (Spring lo hará automáticamente si está configurado) y que la aplicación funciona.
 
 **Qué esperamos lograr**: Habrás completado un ciclo de diagnóstico y refactorización aplicando principios SOLID con la ayuda de Cursor AI. Este es el tipo de proceso que realizarás continuamente como desarrollador para mejorar la calidad de tu código.
-
----
 
 ¡Excelente trabajo! Ahora tienes experiencia práctica en la aplicación de SOLID y en el uso de herramientas de IA para asistirte en este proceso.

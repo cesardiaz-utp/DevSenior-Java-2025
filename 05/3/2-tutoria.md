@@ -1,12 +1,10 @@
-## Tutoría: Diagnóstico y Refactorización Basada en Principios SOLID con Cursor AI
+# Tutoría: Diagnóstico y Refactorización Basada en Principios SOLID con Cursor AI
 
 ¡Hola a todos!
 
 Bienvenidos a esta tutoría práctica donde pondremos en práctica los principios SOLID analizando código real (¡el vuestro y algunos ejemplos!) y aplicando refactorizaciones asistidas por **Cursor AI**. El objetivo es que desarrolléis una habilidad crucial: **identificar oportunidades para mejorar el diseño de vuestro código** y saber cómo aplicar SOLID para lograrlo.
 
----
-
-### Objetivos de la Sesión:
+## Objetivos de la Sesión
 
 Al finalizar esta tutoría, serás capaz de:
 
@@ -15,42 +13,40 @@ Al finalizar esta tutoría, serás capaz de:
 * Practicar la aplicación de refactorizaciones comunes para mejorar la estructura del código en equipo, enfocándonos especialmente en el Principio de Inversión de Dependencias (DIP).
 * Utilizar **Cursor AI** como un mentor automático para obtener sugerencias de mejora de estructura y diseño orientado a objetos (OOP) y SOLID.
 
----
-
-### Actividad 1: Lectura Crítica de Proyectos Entregados (Análisis Antes/Después) (20 minutos)
+## Actividad 1: Lectura Crítica de Proyectos Entregados (Análisis Antes/Después) (20 minutos)
 
 **Propósito:** Desarrollar tu "ojo" para detectar posibles violaciones de principios SOLID en el código. Veremos ejemplos reales (anónimos de vuestros proyectos) o ejemplos típicos para entender cómo se manifiestan en la práctica.
 
 **Descripción de la Actividad:**
 
-1.  El tutor presentará fragmentos de código *anonimizados* de los proyectos entregados o ejemplos típicos que contienen alguna violación a un principio SOLID.
-2.  Como grupo, analizaremos el fragmento. El tutor guiará la discusión con preguntas como:
+1. El tutor presentará fragmentos de código *anonimizados* de los proyectos entregados o ejemplos típicos que contienen alguna violación a un principio SOLID.
+2. Como grupo, analizaremos el fragmento. El tutor guiará la discusión con preguntas como:
+
     * ¿Qué responsabilidades tiene esta clase/método? ¿Son demasiadas? (Piensa en el **Principio de Responsabilidad Única - SRP**).
     * ¿Sería fácil añadir un nuevo tipo de comportamiento sin modificar esta clase? (Piensa en el **Principio Abierto/Cerrado - OCP**).
     * ¿Esta clase depende de implementaciones concretas o de abstracciones? (Piensa en el **Principio de Inversión de Dependencia - DIP**).
     * ¿Esta interfaz obliga a quien la implementa a tener muchos métodos que no usará? (Piensa en el **Principio de Segregación de Interfaz - ISP**).
     * ¿Si una subclase sustituye a su padre, el código que usa el padre funcionaría igual? (Piensa en el **Principio de Sustitución de Liskov - LSP**).
-3.  Después de discutir la violación, se mostrará una versión **"después"** del fragmento de código, refactorizado para cumplir con el principio SOLID relevante.
-4.  Analizaremos la versión refactorizada, explicando cómo se aplica el principio y por qué es una mejora.
+
+3. Después de discutir la violación, se mostrará una versión **"después"** del fragmento de código, refactorizado para cumplir con el principio SOLID relevante.
+4. Analizaremos la versión refactorizada, explicando cómo se aplica el principio y por qué es una mejora.
 
 **Ejemplo Típico para Análisis (Discusión - Antes y Después):**
 
 El tutor presentará un ejemplo similar al código `BadProductService` que verás en la Actividad 2, pero el foco de esta actividad es la *discusión grupal guiada* y el análisis del "antes" y "después" presentado por el tutor.
 
----
-
-### Actividad 2: Detección de Clases Problemáticas (Diagnóstico Práctico con Cursor AI) (25 minutos)
+## Actividad 2: Detección de Clases Problemáticas (Diagnóstico Práctico con Cursor AI) (25 minutos)
 
 **Propósito:** Practicar la identificación de dos problemas comunes relacionados con SOLID de forma más activa, utilizando Cursor AI para ayudarte en el análisis: clases con demasiadas responsabilidades (violación SRP) y acoplamiento fuerte a implementaciones concretas (violación DIP).
 
 **Descripción de la Actividad:**
 
-1.  Trabajaremos con el siguiente ejemplo de código completo en tu entorno Cursor AI. Este es nuestro punto de partida "Antes".
-2.  Trabajando individualmente o en parejas, deberéis analizar este código en vuestras instancias de Cursor AI.
-3.  **Detectando Violaciones SRP:**
+1. Trabajaremos con el siguiente ejemplo de código completo en tu entorno Cursor AI. Este es nuestro punto de partida "Antes".
+2. Trabajando individualmente o en parejas, deberéis analizar este código en vuestras instancias de Cursor AI.
+3. **Detectando Violaciones SRP:**
     * **Tu Tarea:** Abre la clase `BadProductService`. Lee su código y sus métodos. Piensa en cuántas "razones para cambiar" tiene. Si identificas más de una responsabilidad principal, probablemente viola el SRP.
     * **Con Cursor AI:** Selecciona la clase completa `BadProductService` en el editor. Abre el chat de AI (Cmd/Ctrl + L) y escribe un prompt como: "Analyze this Java class (`BadProductService`) for its responsibilities. What different tasks or concerns does it handle?". La respuesta de la IA puede confirmar tu análisis o señalar responsabilidades que no habías notado. Compara tu lista de responsabilidades con la de la IA.
-4.  **Detectando Acoplamiento Fuerte (Violación DIP):**
+4. **Detectando Acoplamiento Fuerte (Violación DIP):**
     * **Tu Tarea:** En el código de `BadProductService`, busca:
         * Campos (`private SomeClass variable;`) cuyo tipo sea una clase concreta (`class SomeClass`) en lugar de una interfaz (`interface SomeInterface`).
         * Lugares donde se crea una nueva instancia de otra clase concreta usando `new NombreDeOtraClaseConcreta()`.
@@ -203,18 +199,14 @@ public class BadProductService { // Nombre explícito para resaltar que tiene pr
 }
 ```
 
-**Resultado Esperado**: Tendrás el código completo que usaremos como base para identificar las violaciones de SRP y DIP en la Actividad 2 y para aplicar la refactorización de DIP en la Actividad 3.
-
----
-
-### Actividad 3: Taller Práctico: Aplicando el Principio de Inversión de Dependencias (DIP) (35 minutos)
+## Actividad 3: Taller Práctico: Aplicando el Principio de Inversión de Dependencias (DIP) (35 minutos)
 
 **Propósito**: Refactorizar código de forma práctica para aplicar el Principio de Inversión de Dependencias (DIP), la piedra angular del diseño flexible en Spring, utilizando interfaces y la inyección por constructor, asistido por Cursor AI.
 
 **Descripción de la Actividad (Seguir la guía del tutor en tu propio Cursor AI):**
 
 1. Utilizaremos el código de ejemplo completo de la Actividad 2 que viola el DIP (la clase `BadProductService` que usa directamente `ConcreteProductRepository` y `EmailNotificationService`).
-1. **Paso 1: Identificar las Dependencias Concretas a Invertir**: Identifica las clases `ConcreteProductRepository` y` EmailNotificationService` como las dependencias concretas que `BadProductService` crea directamente usando `new`.
+1. **Paso 1: Identificar las Dependencias Concretas a Invertir**: Identifica las clases `ConcreteProductRepository` y`EmailNotificationService` como las dependencias concretas que `BadProductService` crea directamente usando `new`.
 1. **Paso 2: Crear las Abstracciones (Interfaces) con Cursor AI:**
     * **Tu Tarea**: En Cursor AI, navega a la clase `ConcreteProductRepository.java`.
     * **Tu Tarea**: Haz clic derecho sobre el nombre de la clase (`ConcreteProductRepository`). Busca las opciones de refactorización y selecciona "Extract Interface" (o similar).
@@ -232,6 +224,7 @@ public class BadProductService { // Nombre explícito para resaltar que tiene pr
     * **Con Cursor AI**: Después de declarar los campos `private final ...`, Cursor AI a menudo te sugerirá automáticamente crear el constructor con `@Autowired` aceptando esos tipos. Acéptala si aparece. Si no, escribe el constructor y `@Autowired` manualmente; Cursor AI te asistirá con la sintaxis.
     * **Tu Tarea**: Dentro del método `addProduct`, cambia las llamadas a métodos para que usen los campos de interfaz: `productRepository.save(product);` y `notificationService.sendNotification("admin@example.com", "New product added: " + product.getName());`. La lógica interna que usa estos métodos no necesita cambiar.
     * **Resultado Esperado**: La clase `BadProductService` refactorizada (que ahora podríamos renombrar a `ProductService` o `ProductManagementService`) debería verse similar a esto:
+
     ```Java
     package com.example.yourproject.service;
 
@@ -300,6 +293,7 @@ public class BadProductService { // Nombre explícito para resaltar que tiene pr
         // }
     }
     ```
+
 1. **Paso 4: Asegurar que Spring Gestiona las Implementaciones (Contexto Spring Boot):**
     * **Tu Tarea**: Confirma que tus implementaciones concretas (`ConcreteProductRepository.java` y `EmailNotificationService.java`) estén anotadas con `@Component` o `@Service` para que Spring las detecte y las gestione como beans. Alternativamente, podrían estar definidas usando métodos `@Bean` en una clase `@Configuration`.
     * **Con Cursor AI**: Puedes usar la función "Find Usages" (buscar usos) en las interfaces (`ProductRepository`, `NotificationService`) para ver dónde se están inyectando (en `ProductService`). También puedes preguntar a Cursor AI si `ConcreteProductRepository` o `EmailNotificationService` están registrados como beans.
@@ -309,9 +303,7 @@ public class BadProductService { // Nombre explícito para resaltar que tiene pr
 
 **Resultado Esperado**: Habrás refactorizado exitosamente un código para aplicar el DIP, ganando experiencia práctica con la creación de interfaces, la inversión de dependencia y el uso de la inyección de dependencias de Spring, todo ello asistido por las herramientas de refactorización de Cursor AI. Ahora podrías crear una nueva implementación de `ProductRepository` (ej. `JpaProductRepository`) o `NotificationService` (ej. `SMSNotificationService`) y decirle a Spring que la inyecte en `ProductService` (cambiando la configuración de Spring, no la clase `ProductService`) sin modificar `ProductService`, demostrando la flexibilidad ganada.
 
---- 
-
-### Actividad 4: Cursor AI como Mentor Automático para OOP y SOLID (30 minutos)
+## Actividad 4: Cursor AI como Mentor Automático para OOP y SOLID (30 minutos)
 
 **Propósito**: Explorar cómo puedes usar Cursor AI de forma proactiva como un mentor personal para obtener feedback y sugerencias sobre el diseño orientado a objetos y el cumplimiento de los principios SOLID en tu propio código o en cualquier otro código que estés leyendo.
 
@@ -333,8 +325,6 @@ public class BadProductService { // Nombre explícito para resaltar que tiene pr
     * **Tu Tarea**: Si identificas código muy similar en dos lugares, pregúntale a Cursor AI si se puede generalizar para evitar duplicados, lo que se relaciona con principios como DRY (Don't Repeat Yourself) y a menudo mejora el diseño general.
 
 **Resultado Esperado**: Aprenderás a usar Cursor AI como un compañero de revisión de código y diseño. Te sentirás más cómodo pidiendo feedback sobre tu código y utilizando las sugerencias de la IA como punto de partida para mejorar el diseño de tu software según los principios OOP y SOLID de forma autónoma.
-
----
 
 ## Cierre y Próximos Pasos (10 minutos)
 

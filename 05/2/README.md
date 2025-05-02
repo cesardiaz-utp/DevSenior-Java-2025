@@ -1,8 +1,11 @@
 # Java Senior con IA
+
 ## Modulo 05 - Spring Boot desde Cero – Arquitectura Profesional para Aplicaciones Backend
+
 ### Clase 2 - Servicios y Lógica de Negocio con Spring
 
 #### [Contenido](1-contenido.md)
+
 - ¿Por Qué una Capa de Servicio? Introducción y Contexto
 - Inversión de Dependencias con Spring
 - Separación por Capas: Profundizando en el Patrón Service Layer
@@ -12,6 +15,7 @@
 - Conclusiones
 
 #### [Tutoría](2-tutoria.md)
+
 - Objetivos de la Sesión
 - Actividad 1: Preparando la Depuración y Puntos de Ruptura
 - Actividad 2: Rastreo del Flujo de Ejecución con Controles de Depuración

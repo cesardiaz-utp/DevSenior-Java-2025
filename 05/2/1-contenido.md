@@ -2,8 +2,6 @@
 
 ¡Hola! En esta clase, vamos a organizar y mejorar la forma en que manejamos la lógica de negocio en nuestras aplicaciones Spring. Aprenderemos a separar las responsabilidades de manera efectiva y a construir servicios robustos, ¡siempre con la ayuda de nuestro editor **Cursor AI**!
 
----
-
 ## 1. ¿Por Qué una Capa de Servicio? Introducción y Contexto
 
 ### El Problema: Lógica de Negocio en el Controlador
@@ -32,8 +30,6 @@ El patrón Service Layer (Capa de Servicio) introduce una capa intermedia entre 
 * **Mantenibilidad:** Los cambios en la lógica de negocio se localizan principalmente en la capa de servicio, reduciendo el riesgo de efectos secundarios inesperados en otras partes.
 * **Testabilidad:** Los servicios pueden ser probados fácilmente de forma unitaria, sin necesidad de configurar un entorno web o de base de datos completo.
 
----
-
 ## 2. Inversión de Dependencias con Spring
 
 ### Inversión de Control (IoC) y Inyección de Dependencias (DI)
@@ -45,10 +41,10 @@ Spring se basa fuertemente en los principios de Inversión de Control (IoC) y su
 
 El **Contenedor de IoC de Spring** es el corazón del framework. Es responsable de:
 
-1.  Instanciar los beans (los objetos gestionados por Spring).
-2.  Configurar los beans.
-3.  Gestionar el ciclo de vida de los beans.
-4.  Inyectar las dependencias entre beans.
+1. Instanciar los beans (los objetos gestionados por Spring).
+2. Configurar los beans.
+3. Gestionar el ciclo de vida de los beans.
+4. Inyectar las dependencias entre beans.
 
 ### Anotaciones Clave: `@Service` y `@Autowired`
 
@@ -90,8 +86,6 @@ Spring proporciona anotaciones para simplificar la configuración de IoC y DI:
 * **Generación de Código:** Puedes usar la generación de código (Cmd/Ctrl + K) o prompts en el chat para pedir a **Cursor AI** que te cree la estructura básica de una clase `@Service` con una dependencia inyectada. Por ejemplo: "Create a Spring Service class named ProductService with a dependency on ProductRepository".
 * **Explicaciones:** Si olvidas qué hace una anotación o cómo funciona la inyección, puedes seleccionar el código o escribir en el chat de **Cursor AI** (Cmd/Ctrl + L) preguntas como: "¿Qué hace @Autowired?", "Explain Spring Dependency Injection".
 
----
-
 ## 3. Separación por Capas: Profundizando en el Patrón Service Layer
 
 Como mencionamos, el patrón Service Layer es una de las capas en la arquitectura de aplicaciones Spring:
@@ -104,19 +98,17 @@ Como mencionamos, el patrón Service Layer es una de las capas en la arquitectur
 
 El Service Layer actúa como el **orquestador**. Un método en un servicio podría:
 
-1.  Recibir datos de un controlador.
-2.  Validar esos datos según reglas de negocio.
-3.  Invocar uno o varios métodos de diferentes repositorios para obtener o guardar información.
-4.  Realizar cálculos o transformaciones complejas con los datos.
-5.  Manejar la lógica transaccional.
-6.  Devolver un resultado al controlador.
+1. Recibir datos de un controlador.
+2. Validar esos datos según reglas de negocio.
+3. Invocar uno o varios métodos de diferentes repositorios para obtener o guardar información.
+4. Realizar cálculos o transformaciones complejas con los datos.
+5. Manejar la lógica transaccional.
+6. Devolver un resultado al controlador.
 
 **Cómo te ayuda Cursor AI aquí:**
 
 * **Navegación y Búsqueda:** Utiliza las capacidades de navegación y búsqueda semántica de **Cursor AI** para moverte rápidamente entre controladores, servicios y repositorios en tu proyecto, ayudándote a visualizar la estructura en capas.
 * **Diagramas Conceptuales (Potencial):** Aunque no es una función nativa de diagramación, a veces puedes pedir a **Cursor AI** en el chat que te describa la interacción entre capas para un escenario específico, ayudando a solidificar tu comprensión.
-
----
 
 ## 4. Otras Anotaciones de Componentes de Spring
 
@@ -130,6 +122,7 @@ Además de `@Service`, Spring ofrece otras anotaciones estereotipo y de configur
         // Métodos de utilidad general
     }
     ```
+
     Aunque puedes usar `@Component` para servicios, es mejor usar `@Service` porque comunica más claramente el rol de la clase.
 
 * `@Repository`: Anotación estereotipo para clases que actúan como **repositorios de datos** o DAOs (Data Access Objects). Indica que la clase tiene el rol de interactuar con la base de datos. Spring puede aplicar funcionalidades especiales a estas clases (como traducción automática de excepciones de base de datos).
@@ -156,8 +149,8 @@ Además de `@Service`, Spring ofrece otras anotaciones estereotipo y de configur
     ```
 
 * `@Configuration` y `@Bean`: Estas anotaciones se utilizan para definir beans de Spring usando configuración basada en Java en lugar de escaneo de componentes.
-    * `@Configuration`: Indica que una clase declara uno o más métodos `@Bean`. Spring procesará esta clase para generar beans.
-    * `@Bean`: Se usa en un método dentro de una clase `@Configuration`. El método debe retornar un objeto que Spring registrará como un bean en su contenedor. El nombre del bean por defecto será el nombre del método.
+  * `@Configuration`: Indica que una clase declara uno o más métodos `@Bean`. Spring procesará esta clase para generar beans.
+  * `@Bean`: Se usa en un método dentro de una clase `@Configuration`. El método debe retornar un objeto que Spring registrará como un bean en su contenedor. El nombre del bean por defecto será el nombre del método.
 
     ```java
     @Configuration
@@ -181,6 +174,7 @@ Además de `@Service`, Spring ofrece otras anotaciones estereotipo y de configur
         }
     }
     ```
+
     Usas `@Configuration` y `@Bean` principalmente cuando necesitas crear beans de clases de terceros (que no puedes anotar con `@Component`), o cuando necesitas lógica compleja para crear o configurar un bean.
 
 **Cómo te ayuda Cursor AI aquí:**
@@ -188,8 +182,6 @@ Además de `@Service`, Spring ofrece otras anotaciones estereotipo y de configur
 * **Generación de Ejemplos:** Pide a **Cursor AI** en el chat que te genere ejemplos de código para cada una de estas anotaciones.
 * **Comparativas:** Pregúntale a **Cursor AI** la diferencia entre `@Component` y `@Service` o entre `@Service` y `@Bean` en un contexto específico.
 * **Explicación de Código:** Selecciona un bloque de código con estas anotaciones y pídele a **Cursor AI** (Cmd/Ctrl + L) que te lo explique.
-
----
 
 ## 5. Implementando el Servicio LibroService con Cursor AI
 
@@ -209,7 +201,7 @@ public class Libro {
 }
 ```
 
-_(Consejo: Usa Cursor AI para generar automáticamente el constructor, getters, setters, `equals()` y `hashCode()` para la clase `Libro`.)_
+*(Consejo: Usa Cursor AI para generar automáticamente el constructor, getters, setters, `equals()` y `hashCode()` para la clase `Libro`.)*
 
 Luego, crearemos la interfaz `LibroService` (opcional, pero recomendado para desacoplamiento y testabilidad):
 
@@ -317,8 +309,6 @@ public class LibroController {
 * **Ayuda con Errores**: Si cometes un error de sintaxis o lógico, Cursor AI a menudo puede sugerir correcciones.
 * **Inyección en el Controlador**: Al crear el constructor en `LibroController`, Cursor AI probablemente te sugerirá automáticamente inyectar `LibroService`.
 
----
-
 ## 6. Refactorización y Mejora del Código con Cursor AI
 
 Una vez que nuestro código funciona, es importante mejorarlo para que sea más legible, mantenible y eficiente. Este proceso se llama **refactorización**. Refactorizar es cambiar la estructura interna del código sin alterar su comportamiento externo.
@@ -347,13 +337,12 @@ Cursor AI puede ser un compañero muy potente en este proceso. No solo realiza r
 **Recuerda**: La IA es una herramienta. Tú sigues siendo el arquitecto y el responsable final de la calidad y corrección del código.
 
 ## 7. Conclusiones
+
 Hemos visto cómo el patrón Service Layer es esencial para construir aplicaciones Spring bien estructuradas y mantenibles. Separar la lógica de negocio en servicios dedicados mejora la organización, la reutilización y la testabilidad.
 
 Dominar el uso de anotaciones como `@Service`, `@Autowired`, `@Component`, `@Bean`, y `@Configuration` es fundamental para trabajar con el contenedor de IoC de Spring.
 
 Finalmente, herramientas modernas como Cursor AI no solo facilitan la escritura de código con autocompletación y generación, sino que también nos asisten activamente en la comprensión de conceptos y en la mejora continua de nuestro código a través de la refactorización inteligente. ¡Aprovechen estas capacidades para ser desarrolladores más eficientes y productivos!
-
----
 
 Si tienen alguna pregunta durante la clase, no duden en interrumpir o usar el chat de Cursor AI para buscar respuestas rápidas o explicaciones adicionales.
 
