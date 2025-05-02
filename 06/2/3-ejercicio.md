@@ -131,4 +131,6 @@ Continuaremos con su proyecto de Clientes y Pedidos. Ahora, cada Pedido estará 
 
 Deberán actualizar su repositorio de GitHub con el código del proyecto extendido. Asegúrense de que el README refleje las nuevas funcionalidades y cómo probarlas. Estén listos para demostrar su API extendida y explicar cómo implementaron las relaciones y consultas.
 
+---
+
 ¡Este ejercicio les desafiará a integrar muchos conceptos importantes! Enfóquense en entender cómo las relaciones se mapean y gestionan en JPA. ¡Utilicen Cursor AI como su guía!

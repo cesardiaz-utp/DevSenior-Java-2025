@@ -286,4 +286,6 @@ public class ProductService { // Renombrada y mejor diseñada
 
 **Qué esperamos lograr**: Habrás completado un ciclo de diagnóstico y refactorización aplicando principios SOLID con la ayuda de Cursor AI. Este es el tipo de proceso que realizarás continuamente como desarrollador para mejorar la calidad de tu código.
 
+---
+
 ¡Excelente trabajo! Ahora tienes experiencia práctica en la aplicación de SOLID y en el uso de herramientas de IA para asistirte en este proceso.

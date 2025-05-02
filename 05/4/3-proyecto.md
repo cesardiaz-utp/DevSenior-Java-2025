@@ -90,6 +90,8 @@ Deberán entregar o estar listos para presentar:
 * Ser capaces de ejecutar la aplicación localmente y mostrar la API funcionando (ej. interactuando con ella a través de Swagger UI o Postman).
 * Ser capaces de explicar su diseño por capas (incluyendo la capa de persistencia simulada), cómo aplicaron las validaciones, cómo documentaron la API y cómo intentaron aplicar principios SOLID, utilizando **Cursor AI** para mostrar y explicar partes específicas del código si es necesario.
 
+---
+
 Este proyecto es su oportunidad para integrar y demostrar todas las habilidades clave de desarrollo backend con Spring Boot vistas en el módulo. ¡Será un excelente complemento para su portafolio profesional!
 
 ¡Mucho éxito con este proyecto integrador! Utilicen **Cursor AI** al máximo para asistirlos en cada etapa, desde la generación de código hasta la refactorización y la documentación. ¡A codificar!

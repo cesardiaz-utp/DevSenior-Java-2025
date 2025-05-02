@@ -62,6 +62,8 @@ Este ejercicio te guiará a través de la adición de una nueva característica,
 * Modifica el método `listarLibros` para que solo devuelva los libros que *no* han sido leídos por defecto, añadiendo un parámetro opcional para incluir todos los libros.
 * Depura este flujo para asegurar que el filtro funciona correctamente.
 
+---
+
 ¡Recuerda que este ejercicio es para que practiques de forma autónoma! Utiliza Cursor AI como tu asistente personal de programación. No dudes en preguntar, pedir explicaciones y solicitar sugerencias.
 
 ¡Mucho éxito!

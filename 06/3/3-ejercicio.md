@@ -88,6 +88,8 @@ Analizar la respuesta de la IA. Entender qué parte de la consulta o qué operac
 
 Deberán actualizar su repositorio de GitHub con el código implementado para estas consultas avanzadas. Asegúrense de que el README.md incluya una sección explicando cada una de las consultas implementadas, cómo llamarlas (URL, parámetros) y cuál fue el hallazgo principal del análisis de rendimiento (Punto 5) y qué índice sugirió la IA para esa consulta. Estén listos para demostrar estas consultas funcionando y explicar su implementación.
 
+---
+
 Este ejercicio es el corazón de la consulta de datos en Spring Data JPA. Les permitirá dominar las diferentes herramientas y empezar a pensar en la eficiencia. ¡Utilicen Cursor AI al máximo para navegar por la complejidad!
 
 ¡Mucho éxito!
