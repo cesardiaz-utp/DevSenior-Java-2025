@@ -1,6 +1,6 @@
 # Java Senior con IA
 
-## 01 - Fundamentos Modernos de Programación con Java e Inteligencia Artificial
+## 01 - Fundamentos Modernos de Programación con Java
 
 ### Clase 3 - Estructuras de Control de Flujo (Condicionales y Bucles)
 

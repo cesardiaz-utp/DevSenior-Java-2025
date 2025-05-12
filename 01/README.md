@@ -1,6 +1,6 @@
 # Java Senior con IA
 
-## Modulo 01 - Fundamentos Modernos de Programación con Java e Inteligencia Artificial
+## Modulo 01 - Fundamentos Modernos de Programación con Java
 
 En este primer módulo, el estudiante se familiariza con los fundamentos esenciales  de la programación en Java, utilizando Visual Studio Code (VSCode) como entorno de desarrollo principal. Se enfatiza el dominio de los conceptos básicos y su aplicación práctica en proyectos iniciales.
 

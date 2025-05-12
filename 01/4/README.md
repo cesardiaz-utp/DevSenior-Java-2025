@@ -1,6 +1,6 @@
 # Java Senior con IA
 
-## 01 - Fundamentos Modernos de Programación con Java e Inteligencia Artificial
+## 01 - Fundamentos Modernos de Programación con Java
 
 ### Clase 4 - Funciones, Modularidad y Proyecto Práctico Integrador
 

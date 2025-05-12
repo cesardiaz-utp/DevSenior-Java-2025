@@ -1,6 +1,6 @@
 # Java Senior con IA
 
-## [Modulo 01](01) - Fundamentos Modernos de Programación con Java e Inteligencia Artificial
+## [Modulo 01](01) - Fundamentos Modernos de Programación con Java
 
 * [Clase 1](01/1): Configuración Profesional del Entorno y Primer Proyecto.
 * [Clase 2](01/2): Variables, Tipos de Datos, Constantes y Operadores.
