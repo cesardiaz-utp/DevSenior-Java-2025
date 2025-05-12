@@ -252,7 +252,84 @@ Ahora, ¡manos a la obra con tu primer programa! La tradición dicta empezar con
   - `println()`: Es un método del objeto `out` que imprime el texto entre paréntesis y luego un salto de línea.
 - `//` y `/*... */`: Son comentarios. El texto después de `//` hasta el final de la línea es un comentario. El texto entre `/* y */` es un comentario de bloque. Los comentarios son ignorados por el compilador y se usan para documentar tu código.
 
-### 3.2. Proceso de Compilación y Ejecución
+### 3.2. Entendiendo la Sintaxis Básica de Java
+
+Veamos algunas reglas fundamentales del lenguaje Java:
+
+- **Sentencias (Statements)**: Son las instrucciones que le das a la computadora para que realice una acción. La mayoría de las sentencias en Java terminan con un **punto y coma** (`;`).
+
+  ```Java
+  int edad = 30; // Esta es una sentencia
+  System.out.println("Hola"); // Esta es otra sentencia
+  ```
+
+- **Bloques de Código (`{ }`)**: Son grupos de una o más sentencias encerrados entre llaves `{ }`. Los bloques se usan para agrupar código que pertenece a una clase, un método, una estructura condicional (`if`, `else`), un bucle (`for`, `while`), etc. Definen el alcance de las variables locales.
+
+  ```Java
+  public class MiClase { // Este es el bloque de la clase
+
+      public static void main(String[] args) { // Este es el bloque del método main
+          // Sentencias dentro del bloque main
+          if (true) { // Este es el bloque de un if
+              // Sentencias dentro del bloque if
+          } // Fin del bloque if
+      } // Fin del bloque main
+  } // Fin del bloque de la clase
+  ```
+
+- Java es **sensible a mayúsculas y minúsculas**. Esto significa que `miVariable` es diferente de `mivariable`, `System` es diferente de `system`, y `main` es diferente de `Main`. Debes escribir las palabras clave, nombres de variables y nombres de clases exactamente como están definidas.
+
+- **Palabras Clave (Keywords)**: Java tiene un conjunto de [palabras reservadas](https://www.abrirllave.com/java/palabras-clave.php) que tienen un significado especial para el compilador (ej. `public`, `static`, `void`, `class`, `int`, `if`, `for`, etc.). No puedes usar estas palabras clave como nombres de variables, métodos o clases.
+
+- **Identificadores**: Son los nombres que le das a tus variables, métodos, clases, etc. Deben seguir ciertas reglas (empezar con letra, `_` o `$`, no contener espacios, no ser palabras clave). Se recomienda usar nombres descriptivos.
+
+### 3.3. Documentando tu Código: Los Comentarios
+
+Los comentarios son notas que los programadores añaden a su código para hacerlo más claro y comprensible, tanto para ellos mismos en el futuro como para otros desarrolladores. El compilador de Java **ignora por completo** los comentarios; no afectan cómo se ejecuta el programa.
+
+Hay tres tipos principales de comentarios en Java:
+
+- **Comentarios de una sola línea**: Comienzan con dos barras inclinadas (`//`) y continúan hasta el final de la línea. Son útiles para explicaciones cortas o para comentar una sola línea de código.
+
+  ```Java
+  int edad = 30; // Declara una variable para almacenar la edad
+  // System.out.println("Esta línea está comentada y no se ejecutará");
+  ```
+
+- **Comentarios de bloque (o multilínea)**: Comienzan con `/*` y terminan con `*/`. Pueden abarcar varias líneas y son útiles para explicaciones más largas o para comentar secciones completas de código temporalmente.
+
+  ```Java
+  /*
+  Este es un comentario de bloque.
+  Puede usarse para describir la funcionalidad
+  de una sección de código o un método.
+  */
+  double precioTotal = precioUnitario * cantidad;
+  ```
+
+- **Comentarios de documentación (Javadoc)**: Comienzan con `/**` y terminan con `*/`. Se usan para generar documentación automática del código.
+
+  ```Java
+  /**
+   * Este método suma dos números enteros.
+   * @param a El primer número a sumar.
+   * @param b El segundo número a sumar.
+   * @return La suma de a y b.
+   */
+  public static int sumar(int a, int b) {
+      return a + b;
+  }
+  ```
+
+**¿Por qué usar comentarios?**
+
+- **Claridad**: Explican la lógica compleja o las decisiones de diseño.
+- **Documentación**: Ayudan a otros (y a tu futuro yo) a entender rápidamente qué hace el código.
+- **Depuración**: Puedes "comentar" temporalmente líneas de código para probar si son la causa de un error.
+
+Acostúmbrate a usar comentarios de forma regular para mantener tu código bien documentado y fácil de entender.
+
+### 3.4. Proceso de Compilación y Ejecución
 
 Java es un lenguaje compilado e interpretado. Primero, el código fuente (`.java`) se compila a bytecode (`.class`), y luego la JVM interpreta y ejecuta ese bytecode.
 

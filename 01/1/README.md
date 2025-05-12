@@ -6,20 +6,20 @@
 
 #### [Contenido](1-contenido.md)
 
-1. Bienvenida e Introducción
-2. Configuración del Entorno de Desarrollo Profesional
+1. Configuración del Entorno de Desarrollo Profesional
     1. Instalación y Configuración del JDK (Java Development Kit)
     2. Visual Studio Code como Editor Principal
     3. Git y GitHub: Control de Versiones Esencial
-3. Fundamentos de la Programación y el Lenguaje Java
+2. Fundamentos de la Programación y el Lenguaje Java
     1. ¿Qué es la Programación?
     2. ¿Que es Java?
     3. Java: JVM, JDK, JRE - Desentrañando el Ecosistema
-4. Primer Proyecto: "Hola Mundo" en Java
+3. Primer Proyecto: "Hola Mundo" en Java
     1. Creación del Archivo `HelloWorld.java`
-    2. Explicación Línea por Línea
-    3. Proceso de Compilación y Ejecución
-5. Cierre y Próximos Pasos
+    2. Entendiendo la Sintaxis Básica de Java
+    3. Documentando tu Código: Los Comentarios
+    4. Proceso de Compilación y Ejecución
+4. Cierre y Próximos Pasos
 
 #### [Tutoría](2-tutoria.md)
 

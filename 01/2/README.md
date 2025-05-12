@@ -8,9 +8,10 @@
 
 1. Fundamentos de Datos en Java
     1. ¿Qué es una Variable?
-    2. Tipos de Datos Primitivos
-    3. Inferencia de Tipo con `var` (Java 10+)
-    4. Declaración y Uso de Constantes (final)
+    2. Java es un Lenguaje Fuertemente Tipado
+    3. Tipos de Datos Primitivos
+    4. Inferencia de Tipo con `var` (Java 10+)
+    5. Declaración y Uso de Constantes (final)
 2. Conversión de Tipos (Type Casting)
     1. Conversión Implícita (Widening Conversion - Ampliación)
     2. Conversión Explícita (Casting - Narrowing Conversion - Estrechamiento)

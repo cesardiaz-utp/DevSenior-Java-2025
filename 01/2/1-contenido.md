@@ -15,9 +15,9 @@ Al finalizar esta clase, serás capaz de:
 
 Para que un programa haga algo útil, necesita trabajar con información (datos). Las variables son como "cajas" con nombre donde guardamos esos datos.
 
-### 1.1. ¿Qué son las Variables?
-
 ![Variables](https://okhosting.com/wp-content/uploads/2019/01/variables-400x250.png)
+
+### 1.1. ¿Qué son las Variables?
 
 Una **variable** es un espacio en la memoria de la computadora que tiene un nombre, un tipo de dato y puede almacenar un valor que puede cambiar durante la ejecución del programa.
 
@@ -49,7 +49,24 @@ Una **variable** es un espacio en la memoria de la computadora que tiene un nomb
   - Se recomienda usar `camelCase` (la primera palabra en minúscula y las siguientes palabras empiezan con mayúscula, ej. `numeroDeEstudiantes`).
   - No pueden ser palabras clave de Java (ej. `int`, `class`, `public`).
 
-### 1.2. Tipos de Datos Primitivos en Java
+### 1.2. Java es un Lenguaje Fuertemente Tipado
+
+Java es un lenguaje **fuertemente tipado** (o de tipado estático). Esto significa que:
+
+- Cada variable tiene un `tipo de dato definido` (ej. `int`, `double`, `String`).
+- El tipo de una variable se verifica en **tiempo de compilación** (antes de que el programa se ejecute).
+- Una vez que una variable es declarada con un tipo, **solo puede almacenar valores de ese tipo**. No puedes asignar un valor de un tipo incompatible sin realizar una conversión explícita (casting).
+
+```Java
+int contador = 10; // 'contador' es de tipo int
+
+contador = 5.5; // ERROR de compilación: No puedes asignar un double a un int directamente
+String nombre = 123; // ERROR de compilación: No puedes asignar un int a un String
+```
+
+Esta característica ayuda a detectar muchos errores comunes (como intentar operar con tipos incompatibles) **antes** de que el programa llegue a ejecutarse, lo que hace que Java sea más robusto y menos propenso a errores en tiempo de ejecución relacionados con tipos de datos.
+
+### 1.3. Tipos de Datos Primitivos en Java
 
 Java tiene 8 tipos de datos primitivos, que son los bloques de construcción fundamentales para almacenar valores. Ocupan un tamaño fijo en memoria.
 
@@ -160,7 +177,7 @@ Java tiene 8 tipos de datos primitivos, que son los bloques de construcción fun
         System.out.println(mensaje);
         ```
 
-### 1.3. Inferencia de Tipo con `var` (Java 10+)
+### 1.4. Inferencia de Tipo con `var` (Java 10+)
 
 A partir de Java 10, la palabra clave `var` te permite declarar variables locales sin especificar explícitamente su tipo, siempre y cuando el tipo pueda ser **inferido** por el compilador a partir de su valor inicial.
 
@@ -216,7 +233,7 @@ A partir de Java 10, la palabra clave `var` te permite declarar variables locale
   - Úsala cuando el tipo sea obvio y la concisión mejore la legibilidad.
   - Evita usarla si el tipo no es evidente para el lector.
 
-### 1.4. Declaración y Uso de Constantes (`final`)
+### 1.5. Declaración y Uso de Constantes (`final`)
 
 Una **constante** es una variable cuyo valor, una vez asignado, no puede ser modificado durante la ejecución del programa. Se declaran usando la palabra clave `final`.
 
