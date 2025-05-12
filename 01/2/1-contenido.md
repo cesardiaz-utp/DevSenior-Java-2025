@@ -545,11 +545,12 @@ Mientras que los tipos primitivos (`int`, `double`, `boolean`, etc.) almacenan d
 ## Resumen de la Clase
 
 - Has aprendido a declarar y usar **variables** (incluyendo la inferencia de tipo con `var`) y **constantes** para almacenar datos en tu programa.
+- Comprendes que **Java es un lenguaje fuertemente tipado** y qué implica eso para el manejo de tipos de datos.
 - Conoces los **tipos de datos primitivos** más comunes (`int`, `double`, `boolean`, `char`) y la diferencia con `String` (que es un objeto).
 - Sabes cómo realizar **conversiones de tipo** (implícitas y explícitas) y las precauciones del casting.
-- Dominas los **operadores aritméticos** (+, -, *, /, %) y su precedencia.
+- Dominas los **operadores aritméticos** (`+`, `-`, `*`, `/`, `%`) y su precedencia.
 - Has tenido una primera aproximación a la **entrada de datos por consola** usando la clase `Scanner`, fundamental para crear programas interactivos.
-- Ahora conoces las diferentes opciones para la salida de datos (`System.out.print`, `System.out.println`, `System.out.printf`) y cómo formatear tu información.
+- Ahora conoces las diferentes opciones para la **salida de datos** (`System.out.print`, `System.out.println`, `System.out.printf`) y cómo formatear tu información.
 
 ¡Estos son los bloques fundamentales de cualquier programa! Ahora, ¡a practicar lo aprendido!
 
