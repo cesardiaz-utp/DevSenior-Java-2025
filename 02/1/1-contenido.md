@@ -4,6 +4,8 @@
 
 La POO es un paradigma fundamental en Java que te permitirá modelar problemas de una manera más cercana a cómo pensamos sobre el mundo real.
 
+![Pensando en objetos](https://ferestrepoca.github.io/paradigmas-de-programacion/poo/poo_teoria/images/poo.png)
+
 ## Objetivos de Aprendizaje
 
 Al finalizar esta clase, serás capaz de:
@@ -20,6 +22,8 @@ Al finalizar esta clase, serás capaz de:
 
 La Programación Orientada a Objetos se basa en dos conceptos principales: **clases** y **objetos**.
 
+![Clases y Objetos](assets/clase_objeto.png)
+
 - **Objeto**: En el mundo real, un objeto es cualquier entidad que tiene **características** (estado) y puede realizar **acciones** (comportamiento). Por ejemplo:
   - Un **carro**: Características (color, marca, modelo, velocidad actual), Acciones (arrancar, acelerar, frenar, girar).
   - Un **perro**: Características (raza, nombre, edad, color de pelo), Acciones (ladrar, correr, comer, dormir).
@@ -28,6 +32,8 @@ La Programación Orientada a Objetos se basa en dos conceptos principales: **cla
   En programación, un **objeto** es una instancia concreta de una clase. Es una "cosa" que existe en la memoria de tu computadora y tiene un estado (valores en sus atributos) y puede realizar acciones (ejecutar sus métodos).
 
 - **Clase**: Una clase es como un **plano**, una **plantilla** o un **molde** para crear objetos. Define las características (atributos) y las acciones (métodos) que todos los objetos de ese tipo tendrán. No es un objeto en sí misma, sino la descripción de cómo deben ser los objetos de esa categoría.
+
+![Clase Carro](https://compu2poo.wordpress.com/wp-content/uploads/2013/11/obeto.png)
 
 - La clase `Carro` define que todos los carros tendrán un color, una marca, una velocidad, etc., y podrán arrancar, acelerar, etc.
 
