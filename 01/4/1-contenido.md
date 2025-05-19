@@ -2,7 +2,7 @@
 
 ¡Felicidades por llegar a la última clase del Módulo 1! Hasta ahora, sabes almacenar datos, realizar cálculos, tomar decisiones y repetir acciones. En esta clase, aprenderás una técnica esencial para construir programas más grandes y organizados: las **funciones** (también llamadas **métodos** en Java). Además, consolidarás todo lo aprendido en un emocionante proyecto.
 
-## Objetivos de Aprendizaje de la Clase
+## Objetivos de Aprendizaje
 
 Al finalizar esta clase, serás capaz de:
     - Dividir tu código en bloques reutilizables usando **funciones** (**métodos**).

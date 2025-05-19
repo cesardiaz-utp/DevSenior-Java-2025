@@ -24,4 +24,4 @@
 
 #### [Reto del módulo](3-proyecto.md)
 
-#### [Preguntas para enrevista técnica](4-preguntas.md) (Opcional)
+#### [Preguntas para entrevista técnica](4-preguntas.md) (Opcional)

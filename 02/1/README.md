@@ -2,7 +2,7 @@
 
 ## Modulo 02 - Programación Orientada a Objetos
 
-### Clase 01 - Clases, Objetos, Constructores y Encapsulamiento
+### Clase 1 - Clases, Objetos, Constructores y Encapsulamiento
 
 ### [Contenido](1-contenido.md)
 

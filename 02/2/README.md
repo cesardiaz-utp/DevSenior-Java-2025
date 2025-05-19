@@ -2,7 +2,7 @@
 
 ## Modulo 02 - Programación Orientada a Objetos
 
-### Clase 02: Herencia, Polimorfismo e Interfaces
+### Clase 2: Herencia, Polimorfismo e Interfaces
 
 #### [Contenido](1-contenido.md)
 

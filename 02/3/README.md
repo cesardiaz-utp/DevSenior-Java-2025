@@ -2,7 +2,7 @@
 
 ## Modulo 02 - Programación Orientada a Objetos
 
-### Clase 03: Modelado Avanzado de Clases en POO
+### Clase 3: Modelado Avanzado de Clases en POO
 
 #### [Contenido](1-contenido.md)
 
