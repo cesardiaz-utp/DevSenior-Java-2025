@@ -25,6 +25,27 @@ La **herencia** es un mecanismo de la POO que permite que una clase (llamada **s
 
 En Java, la herencia se indica con la palabra clave `extends`. Una clase hija hereda todos los miembros `public` y `protected` de su clase padre. Los miembros `private` de la clase padre no se heredan directamente (aunque se puede acceder a ellos a través de métodos públicos/protected heredados).
 
+```mermaid
+classDiagram
+    class Animal {
+        -String nombre
+        -int edad
+        +void dormir()
+        +void hacerSonido()
+    }
+
+    class Perro {
+        -String description
+        -String status
+        +void ladrar()
+        +void hacerSonido()
+        +void hacerSonidoAnimal()
+
+    }
+
+    Animal <|-- Perro
+```
+
 ```Java
 // Superclase (Clase Padre)
 public class Animal {
@@ -225,6 +246,25 @@ Una **clase abstracta** es una clase que no se puede instanciar directamente (no
   - Pueden tener **métodos concretos**: métodos con implementación completa, que las subclases pueden heredar y usar directamente.
   - Pueden tener atributos y constructores (aunque los constructores solo son llamados por las subclases usando `super()`).
 
+```mermaid
+classDiagram
+    class FiguraGeometrica {
+        <<Abstract>>
+        -String color
+        +double calcularArea()*
+        +double calcularPerimetro()*
+        *void mostrarColor()
+    }
+
+    class Circulo {
+        - double radio;
+        +double calcularArea()
+        +double calcularPerimetro()
+    }
+
+    FiguraGeometrica <|-- Circulo
+```
+
 ```Java
 // Clase Abstracta
 public abstract class FiguraGeometrica {
@@ -296,6 +336,30 @@ Una **interface** en Java es un **contrato**. Define un conjunto de métodos que
 
 Las interfaces se declaran con la palabra clave `interface`. Los métodos declarados en una interfaz son implícitamente `public` y `abstract` (antes de Java 8; ahora pueden tener métodos `default` y `static` con implementación, pero el foco inicial está en los métodos abstractos).
 
+```mermaid
+classDiagram
+    class Saludable {
+        <<Interface>>
+        int NIVEL_SALUDO$
+        +void saludar()
+        +void despedirse()$
+    }
+
+    class Persona {
+        -String nombre
+        +void saludar()
+    }
+
+    class Robot {
+        -String id
+        +void saludar()
+    }
+
+    Saludable <|.. Persona: implements
+    Saludable <|.. Robot: implements
+
+```
+
 ```Java
 // Declaración de una Interfaz
 // Define un contrato: cualquier cosa que sea 'Saludable' debe saber 'saludar()'
@@ -357,14 +421,6 @@ public class EjemploInterfaces {
         // Llamamos al método definido en la interfaz
         entidad1.saludar(); // Llama a la versión de Persona
         entidad2.saludar(); // Llama a la versión de Robot
-
-        // Sin arrays/listas, demostramos con variables individuales:
-        Saludable s1 = new Persona("Carlos");
-        Saludable s2 = new Robot("C3PO");
-
-        System.out.println("\nDemostrando polimorfismo con interfaces sin colecciones:");
-        s1.saludar(); // Llama a Persona.saludar()
-        s2.saludar(); // Llama a Robot.saludar()
     }
 }
 ```
@@ -391,6 +447,41 @@ Ambas son mecanismos de abstracción y no pueden ser instanciadas directamente, 
 Este ejercicio se realizará de forma guiada en clase para aplicar los conceptos de Herencia, Polimorfismo e Interfaces.
 
 **Objetivo del Ejercicio**: Crear una jerarquía de clases que represente diferentes tipos de empleados y definir un comportamiento común a través de una interfaz.
+
+```mermaid
+classDiagram
+    class Empleado {
+        -String nombre
+        -String id
+        -double salarioBase
+        +double calcularSalario()
+        +void mostrarDetalles()
+        +void mostrarDetalles(String)
+    }
+
+    class Gerente {
+        -double bonoAnual
+        +double calcularSalario()
+        +void mostrarDetalles()
+    }
+
+    class Desarrollador {
+        -String lenguajePrincipal
+        +double calcularSalario()
+        +void mostrarDetalles()
+    }
+
+    class Trabajable {
+        <<Interface>>
+        +void trabajar()
+    }
+
+    Empleado <|-- Gerente 
+    Empleado <|-- Desarrollador
+
+    Gerente ..|> Trabajable : implements
+    Desarrollador ..|> Trabajable : implements
+```
 
 ### Crear la Clase Base `Empleado`
 

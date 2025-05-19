@@ -13,6 +13,49 @@ Este ejercicio te desafiará a aplicar los conceptos de Herencia, Polimorfismo (
 
 ## Instrucciones Detalladas
 
+```mermaid
+classDiagram
+    class Vehiculo {
+        -String marca
+        -String modelo
+        -int año
+        +mostrarInformacion()
+        +mover()
+    }
+
+    class Coche {
+        -int numeroPuertas
+        +mostrarInformacion()
+        +mover()
+        +arrancar()
+    }
+
+    class Motocicleta {
+        -int cilindrada
+        +mostrarInformacion()
+        +mover()
+        +arrancar()
+    }
+
+    class Camion {
+        -double capacidadCarga
+        +mostrarInformacion()
+        +mover()
+    }
+
+    class Arrancable {
+        <<Interface>>
+        +void arrancar()
+    }
+
+    Vehiculo <|-- Coche
+    Vehiculo <|-- Motocicleta
+    Vehiculo <|-- Camion
+
+    Coche ..|> Arrancable : implements
+    Motocicleta ..|> Arrancable : implements
+```
+
 ### 1. Crear la Clase Base `Vehiculo`
 
 - Crea una clase llamada `Vehiculo`.

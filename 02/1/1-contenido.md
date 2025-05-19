@@ -30,13 +30,33 @@ La Programación Orientada a Objetos se basa en dos conceptos principales: **cla
 - **Clase**: Una clase es como un **plano**, una **plantilla** o un **molde** para crear objetos. Define las características (atributos) y las acciones (métodos) que todos los objetos de ese tipo tendrán. No es un objeto en sí misma, sino la descripción de cómo deben ser los objetos de esa categoría.
 
 - La clase `Carro` define que todos los carros tendrán un color, una marca, una velocidad, etc., y podrán arrancar, acelerar, etc.
+
+    ```mermaid
+    classDiagram
+        class Carro {
+            String color
+            String marca
+            double velocidad
+            void arrancar()
+            void acelerar()
+        }
+    ```
+
 - La clase `Perro` define que todos los perros tendrán una raza, un nombre, etc., y podrán ladrar, correr, etc.
+
+    ```mermaid
+    classDiagram
+    class Perro {
+        String raza
+        String nombre
+        void ladrar()
+        void correr()
+    }
+    ```
 
 **Relación Clase-Objeto**: La clase es la definición abstracta; el objeto es la materialización concreta de esa definición. Puedes crear muchos objetos a partir de una sola clase, y cada objeto tendrá su propio estado independiente.
 
-// TODO: Falta colocar aqui una imagen
-Fragmento de código
-
+```mermaid
 graph TD
     A[Clase Carro] --> B(Objeto miCarro);
     A --> C(Objeto otroCarro);
@@ -44,6 +64,7 @@ graph TD
     B -- "acelerar()\nfrenar()" --> E(Comportamiento);
     C -- "color: azul\nvelocidad: 0" --> F(Estado);
     C -- "acelerar()\nfrenar()" --> G(Comportamiento);
+```
 
 En Java, defines una clase usando la palabra clave class:
 
@@ -411,6 +432,23 @@ public class Persona {
         // p1.edad = 30; // ERROR de compilación: El atributo 'edad' es privado
     }
 }
+```
+
+```mermaid
+classDiagram
+    class Persona {
+        -String nombre
+        -int edad;
+
+        +Persona(String nombre, int edad)
+
+        +String getNombre()
+        +void setNombre(String nombre)
+        +int getEdad()
+        +void setEdad(int edad)
+        
+        +void saludar()
+    }
 ```
 
 ## 6. Ejercicio Práctico en Clase: Creando y Usando Objetos Encapsulados
