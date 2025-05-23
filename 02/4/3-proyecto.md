@@ -43,20 +43,41 @@ Este proyecto tiene como objetivo la aplicación práctica e integración de tod
 
 ## Consideraciones Adicionales sobre Requisitos
 
-- El sistema no necesita persistir los datos (guardarlos en un archivo o base de datos); la información puede existir solo en la memoria mientras el programa se ejecuta.
-- No se requieren interfaces gráficas de usuario (GUI); toda la interacción puede ser a través de la consola (leer/escribir en `System.in`/`System.out`).
-- La gestión de colecciones de usuarios y acciones debe realizarse **utilizando únicamente Arrays**. Deberás definir un tamaño máximo para los arrays que utilices (ej. un máximo de 50 usuarios en el sistema, un máximo de 100 acciones por usuario) y manejar la situación cuando se alcance ese límite (ej. mostrar un mensaje de error si se intenta añadir más usuarios de los permitidos).
-- Se espera que apliques los principios de POO para estructurar tu solución:
-  - **Encapsulamiento**: Proteger la información sensible (contraseñas, etc.).
-  - **Herencia**: Si encuentras una jerarquía natural en tus entidades (considera si los roles implican tipos de usuarios fundamentalmente diferentes que justifiquen herencia).
-  - **Polimorfismo**: Permitir que diferentes tipos de objetos respondan a la misma solicitud de forma diferente (si aplicaste herencia/interfaces).
-  - **Abstracción**: Ocultar detalles de implementación.
-  - **Relaciones**: Modelar correctamente las relaciones "tiene un" (Composición/Agregación con Arrays, Asociación).
-- Se esperan validaciones básicas (ej. verificar que el ID/Username a buscar existe, verificar permisos de rol antes de ejecutar una operación).
-- Se espera que organices tu código en paquetes y apliques una estructura básica por capas.
-- Se espera el uso de Enums para los Roles y quizás otros estados fijos.
-- Se espera que sigas buenas prácticas de codificación (nombres, legibilidad, comentarios, Javadoc).
+**Recomendaciones clave para tu implementación:**
+
+- Utiliza **Arrays** para almacenar usuarios y acciones, definiendo un tamaño máximo (ej. 50 usuarios, 100 acciones por usuario).
+- Aplica los principios de **POO**:
+  - **Encapsulamiento**: Protege información sensible como contraseñas.
+  - **Herencia**: Úsala si identificas jerarquías naturales (por ejemplo, si los roles justifican subclases).
+  - **Polimorfismo**: Permite que distintos objetos respondan de forma diferente a la misma operación (si usas herencia/interfaces).
+  - **Abstracción**: Oculta detalles internos de implementación.
+  - **Relaciones**: Modela correctamente las relaciones entre entidades (composición/agregación/asociación).
+- Realiza **validaciones básicas**:
+  - Verifica existencia de ID/Username antes de operar.
+  - Verifica permisos según el rol antes de ejecutar operaciones.
+- Organiza tu código en **paquetes** y aplica una **estructura por capas** (ej. modelo, servicio, vista/controlador).
+- Utiliza **Enums** para roles y otros estados fijos.
+- Sigue **buenas prácticas de codificación**:
+  - Nombres claros y descriptivos.
+  - Código legible y comentado.
+  - Incluye Javadoc donde sea relevante.
 
 Este es el lienzo sobre el cual aplicarás todos los conceptos de POO aprendidos.
 
 ¡Analiza cuidadosamente estos requisitos para diseñar tu solución!
+
+---
+
+## Desafíos adicionales (opcional)
+
+Si deseas agregar más complejidad y convertir este proyecto en un reto mayor, considera implementar alguna(s) de las siguientes características:
+
+- **Bloqueo de cuentas tras múltiples intentos fallidos de inicio de sesión:** Si un usuario falla al ingresar su contraseña correctamente más de 3 veces, su cuenta se bloquea y solo un administrador puede desbloquearla.
+- **Cambio de roles en tiempo de ejecución:** Permitir que los administradores cambien el rol de un usuario existente (de Estándar a Administrador y viceversa).
+- **Búsqueda avanzada de usuarios:** Implementa filtros para buscar usuarios por nombre parcial, rol o rango de fechas de creación.
+- **Auditoría global:** Permite que los administradores vean el historial de acciones de todos los usuarios, no solo el propio.
+- **Validaciones adicionales:** Por ejemplo, fuerza de contraseña mínima, unicidad de nombre completo, etc.
+- **Soporte para más roles:** Agrega roles adicionales como "Invitado" o "Supervisor" con permisos intermedios.
+- **Exportación de historial:** Permite exportar el historial de acciones de un usuario a un archivo de texto (aunque sea solo simulado en consola).
+
+Estos desafíos son opcionales y están pensados para quienes quieran profundizar y practicar aún más los conceptos de POO y diseño de sistemas.

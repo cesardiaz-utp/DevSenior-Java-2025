@@ -24,16 +24,9 @@ La Programación Orientada a Objetos se basa en dos conceptos principales: **cla
 
 ![Clases y Objetos](assets/clase_objeto.png)
 
-- **Objeto**: En el mundo real, un objeto es cualquier entidad que tiene **características** (estado) y puede realizar **acciones** (comportamiento). Por ejemplo:
-  - Un **carro**: Características (color, marca, modelo, velocidad actual), Acciones (arrancar, acelerar, frenar, girar).
-  - Un **perro**: Características (raza, nombre, edad, color de pelo), Acciones (ladrar, correr, comer, dormir).
-  - Una **persona**: Características (nombre, edad, altura, color de ojos), Acciones (caminar, hablar, comer, trabajar).
-
-  En programación, un **objeto** es una instancia concreta de una clase. Es una "cosa" que existe en la memoria de tu computadora y tiene un estado (valores en sus atributos) y puede realizar acciones (ejecutar sus métodos).
-
 - **Clase**: Una clase es como un **plano**, una **plantilla** o un **molde** para crear objetos. Define las características (atributos) y las acciones (métodos) que todos los objetos de ese tipo tendrán. No es un objeto en sí misma, sino la descripción de cómo deben ser los objetos de esa categoría.
 
-![Clase Carro](https://compu2poo.wordpress.com/wp-content/uploads/2013/11/obeto.png)
+    ![Clase Carro](https://compu2poo.wordpress.com/wp-content/uploads/2013/11/obeto.png)
 
 - La clase `Carro` define que todos los carros tendrán un color, una marca, una velocidad, etc., y podrán arrancar, acelerar, etc.
 
@@ -60,19 +53,32 @@ La Programación Orientada a Objetos se basa en dos conceptos principales: **cla
     }
     ```
 
-**Relación Clase-Objeto**: La clase es la definición abstracta; el objeto es la materialización concreta de esa definición. Puedes crear muchos objetos a partir de una sola clase, y cada objeto tendrá su propio estado independiente.
+- **Objeto**: En el mundo real, un objeto es cualquier entidad que tiene **características** (estado) y puede realizar **acciones** (comportamiento). Por ejemplo:
+  - Un **carro**: Características (color, marca, modelo, velocidad actual), Acciones (arrancar, acelerar, frenar, girar).
+  - Un **perro**: Características (raza, nombre, edad, color de pelo), Acciones (ladrar, correr, comer, dormir).
+  - Una **persona**: Características (nombre, edad, altura, color de ojos), Acciones (caminar, hablar, comer, trabajar).
 
-```mermaid
-graph TD
-    A[Clase Carro] --> B(Objeto miCarro);
-    A --> C(Objeto otroCarro);
-    B -- "color: rojo\nvelocidad: 50" --> D(Estado);
-    B -- "acelerar()\nfrenar()" --> E(Comportamiento);
-    C -- "color: azul\nvelocidad: 0" --> F(Estado);
-    C -- "acelerar()\nfrenar()" --> G(Comportamiento);
-```
+  En programación, un **objeto** es una instancia concreta de una clase. Es una "cosa" que existe en la memoria de tu computadora y tiene un estado (valores en sus atributos) y puede realizar acciones (ejecutar sus métodos).
 
-En Java, defines una clase usando la palabra clave class:
+  ![Objetos de Carro](https://img.remediosdigitales.com/e14a76/autos-mas-vendidos-mexico/1366_2000.jpg)
+
+  ![Objetos de Perro](https://cdn.wamiz.fr/cdn-cgi/image/format=auto,quality=80,width=664,height=373.5,fit=cover/article/main-picture/616c8a1295e55611964743.jpg)
+
+- **Relación Clase-Objeto**: La clase es la definición abstracta; el objeto es la materialización concreta de esa definición. Puedes crear muchos objetos a partir de una sola clase, y cada objeto tendrá su propio estado independiente.
+
+  ```mermaid
+  graph TD
+      A[Clase Carro] --> B(Objeto miCarro);
+      A --> C(Objeto otroCarro);
+      B -- "color: rojo\nvelocidad: 50" --> D(Estado);
+      B -- "acelerar()\nfrenar()" --> E(Comportamiento);
+      C -- "color: azul\nvelocidad: 0" --> F(Estado);
+      C -- "acelerar()\nfrenar()" --> G(Comportamiento);
+  ```
+
+  ![Clase Caballo](https://eaddfsi.wordpress.com/wp-content/uploads/2009/06/objetos.png)
+
+En Java, defines una clase usando la palabra clave `class`:
 
 ```Java
 public class NombreDeMiClase {
@@ -90,7 +96,7 @@ La POO se sustenta en cuatro **principios fundamentales** (**pilares**) que guí
 1. **Encapsulamiento**: Consiste en agrupar los datos (atributos) y los métodos que operan sobre ellos en una sola unidad (la clase), y **ocultar los detalles internos** del objeto, exponiendo solo lo necesario a través de una interfaz pública (métodos). Esto protege los datos y controla su acceso.
 2. **Abstracción**: Se enfoca en mostrar solo las características esenciales de un objeto y ocultar los detalles complejos de su implementación. Es como usar un control remoto: no necesitas saber cómo funciona internamente, solo qué botones presionar para cambiar de canal o subir el volumen. Creamos clases que representan conceptos del mundo real de forma simplificada.
 3. **Herencia**: Permite que una nueva clase (subclase o clase hija) herede atributos y métodos de una clase existente (superclase o clase padre). Esto fomenta la reutilización de código y establece relaciones "es un tipo de" (ej. Un `Perro` es un tipo de `Animal`).
-4. **Polimorfismo**: Significa _"muchas formas_". Permite que objetos de diferentes clases respondan al mismo mensaje (llamada a método) de maneras diferentes, según su tipo específico. Es como tener un botón "Reproducir" en diferentes dispositivos (un reproductor de música, un reproductor de video); la acción es la misma, pero la implementación interna varía.
+4. **Polimorfismo**: Significa "_muchas formas_". Permite que objetos de diferentes clases respondan al mismo mensaje (llamada a método) de maneras diferentes, según su tipo específico. Es como tener un botón "Reproducir" en diferentes dispositivos (un reproductor de música, un reproductor de video); la acción es la misma, pero la implementación interna varía.
 
 Estos principios trabajan juntos para crear código más organizado, flexible, reutilizable y fácil de mantener.
 

@@ -65,4 +65,26 @@ Tu programa principal (`main`) debe actuar como un orquestador que llama a difer
 
 Este proyecto es una excelente oportunidad para integrar todo lo que has aprendido. La tutoría de esta semana estará enfocada en ayudarte a resolver dudas y superar los desafíos que encuentres al construir este sistema.
 
+## Consejos para principiantes
+
+- Divide el problema en partes pequeñas y resuelve una a la vez.
+- Usa comentarios para explicar qué hace cada método y cada sección de tu código.
+- Antes de escribir todo el programa, prueba cada función por separado.
+- Recuerda que las variables `static` permiten compartir información entre métodos sin tener que pasar muchos parámetros.
+- Si tienes dudas sobre cómo validar datos, busca ejemplos sencillos de validación de entrada en Java.
+- No te preocupes si tu primer intento no funciona perfecto: prueba, corrige y aprende del proceso.
+
+## Desafíos adicionales (opcional, para subir el nivel)
+
+Si quieres practicar más y desafiarte, intenta alguna de estas ideas:
+
+- Permite que el usuario registre un nuevo estudiante solo si confirma que desea sobrescribir los datos anteriores.
+- Agrega una opción para limpiar (borrar) los datos del estudiante actual y dejar el sistema como al inicio.
+- Implementa una función que indique si el estudiante aprobó o reprobó (por ejemplo, si el promedio es mayor o igual a 60).
+- Valida que las notas no solo estén en el rango correcto, sino que además sean números (no letras ni símbolos).
+- Haz que el menú se muestre nuevamente después de cada acción, hasta que el usuario decida salir.
+- Permite que el usuario vea un resumen de los datos antes de confirmar el registro.
+
+> Estos desafíos solo requieren lógica, condicionales y funciones. ¡Inténtalo si quieres mejorar tus habilidades!
+
 **¡Mucho éxito!**
