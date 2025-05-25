@@ -4,6 +4,15 @@
 
 Hoy, nos sumergiremos en dos pilares fundamentales del ecosistema Java moderno: los **gestores de proyectos** y el **manejo avanzado de excepciones**. Ambas herramientas son cruciales para el desarrollo colaborativo, la integración continua y, en definitiva, para escribir código que funcione de manera fiable en cualquier entorno.
 
+## Objetivos de Aprendizaje
+
+Al finalizar esta clase, serás capaz de:
+
+- **Explicar la importancia y el uso de gestores de proyectos** como Maven y Gradle para automatizar el ciclo de vida del software Java, incluyendo la gestión de dependencias y la estandarización del build.
+- **Diferenciar entre errores y excepciones en Java**, identificando su jerarquía y la filosofía detrás de las excepciones verificadas y no verificadas.
+- **Manejar excepciones de forma efectiva** utilizando los bloques `try-catch-finally` y las palabras clave `throw` y `throws` para controlar el flujo del programa ante situaciones inesperadas.
+- **Crear y aplicar excepciones personalizadas** para representar errores específicos de la aplicación, siguiendo las mejores prácticas en el manejo de errores.
+
 ## 1. Gestores de Proyectos Java: Maven y Gradle
 
 En el desarrollo de software real, los proyectos rara vez son un solo archivo `Main.java`. Rápidamente crecen, necesitan funcionalidades externas (librerías) y requieren pasos complejos para ser convertidos de código fuente a una aplicación ejecutable. Imaginen construir una casa grande: necesitan un arquitecto que coordine los planos, un capataz que gestione a los trabajadores y una cadena de suministro que traiga los materiales exactos en el momento justo. En el mundo del software, los **gestores de proyectos** como **Maven** y **Gradle** son ese arquitecto y capataz.

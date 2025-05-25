@@ -1,8 +1,8 @@
 # Java Senior con IA
 
-## Modulo 02 - Programación Orientada a Objetos
+## Modulo 03 - Excepciones, Logging y Pruebas Unitarias
 
-### Clase 1 - Clases, Objetos, Constructores y Encapsulamiento
+### Clase 1 - Gestores de Proyectos, Excepciones y Manejo de Errores en Java
 
 ### [Contenido](1-contenido.md)
 

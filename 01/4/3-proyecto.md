@@ -85,6 +85,6 @@ Si quieres practicar más y desafiarte, intenta alguna de estas ideas:
 - Haz que el menú se muestre nuevamente después de cada acción, hasta que el usuario decida salir.
 - Permite que el usuario vea un resumen de los datos antes de confirmar el registro.
 
-> Estos desafíos solo requieren lógica, condicionales y funciones. ¡Inténtalo si quieres mejorar tus habilidades!
+Estos desafíos solo requieren lógica, condicionales y funciones. ¡Inténtalo si quieres mejorar tus habilidades!
 
 **¡Mucho éxito!**
