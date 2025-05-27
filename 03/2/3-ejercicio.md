@@ -503,10 +503,10 @@ Esta clase central gestionará las colecciones de pacientes y visitas utilizando
 
         /**
          * Obtiene un array de todas las visitas de un paciente específico.
-        * @param patientId El ID del paciente.
-        * @return Un array de objetos Visit[] con las visitas del paciente.
-        * @throws PatientNotFoundException Si el paciente no existe.
-        */
+         * @param patientId El ID del paciente.
+         * @return Un array de objetos Visit[] con las visitas del paciente.
+         * @throws PatientNotFoundException Si el paciente no existe.
+         */
         public Visit[] getPatientVisits(String patientId) {
             logger.debug("Obteniendo visitas para paciente con ID: {}", patientId);
             // Verificar que el paciente exista
@@ -538,8 +538,8 @@ Esta clase central gestionará las colecciones de pacientes y visitas utilizando
 
         /**
          * Lista todos los pacientes registrados en la clínica.
-        * @return Un array de objetos Patient[] con todos los pacientes.
-        */
+         * @return Un array de objetos Patient[] con todos los pacientes.
+         */
         public Patient[] listAllPatients() {
             logger.debug("Listando todos los pacientes registrados. Total: {}", patientCount);
             // Retorna una copia del array de pacientes que realmente están ocupados.
@@ -862,7 +862,7 @@ public class App {
 
 ## Criterios de Evaluación (Autoevaluación)
 
-Marca con una "X" cada punto que hayas completado y verificado con éxito:
+Tu ejercicio será evaluado en base a los siguientes puntos:
 
 - El proyecto Maven `veterinary-clinic` se creó correctamente.
 - Las dependencias de SLF4j y Log4j2 se añadieron correctamente al `pom.xml`.
