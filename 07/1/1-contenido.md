@@ -17,7 +17,7 @@ Al terminar esta clase, no solo sabrán qué hacer cuando algo sale mal, sino qu
 
 ![Errores de navegación](https://rockcontent.com/es/wp-content/uploads/sites/3/2019/02/errores-de-navegacio%CC%81n.png.webp)
 
-Una API RESTful es, en esencia, una conversación entre un cliente (como una aplicación móvil o un navegador) y un servidor. En esta conversación, el **protocolo HTTP** (Hypertext Transfer Protocol) actúa como el idioma común. Los **códigos de estado HTTP** son las señales de tráfico que indican el resultado de una solicitud. Usarlos correctamente es crucial para la **usabilidad y la predictibilidad** de su API. Imaginen que están hablando con alguien y, en lugar de responder "_sí_", "_no_" o "_no te entendí_", simplemente se quedan en silencio. ¡Sería frustrante! Los códigos HTTP evitan esa frustración.
+Una API RESTful es, en esencia, una conversación entre un cliente (como una aplicación móvil o un navegador) y un servidor. En esta conversación, el **protocolo HTTP** (Hypertext Transfer Protocol) actúa como el idioma común. Los **códigos de estado HTTP** son las señales de tráfico que indican el resultado de una solicitud. Usarlos correctamente es crucial para la **interoperabilidad y la usabilidad** de su API. Imaginen que están hablando con alguien y, en lugar de responder "_sí_", "_no_" o "_no te entendí_", simplemente se quedan en silencio. ¡Sería frustrante! Los códigos HTTP evitan esa frustración.
 
 ### 1.1. Estructura de una respuesta HTTP
 
