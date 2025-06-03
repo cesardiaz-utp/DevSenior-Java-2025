@@ -143,19 +143,57 @@ public class EjemploResponseEntityController {
 
 **Ventaja Clave**: `ResponseEntity` es la herramienta definitiva para modelar con precisión las respuestas de su API, permitiéndoles ir más allá del simple `200 OK` y comunicar de forma efectiva el resultado de cada operación. Esto es fundamental para construir APIs que no solo sean funcionales, sino también **precisas, estandarizadas y fáciles de consumir** por cualquier cliente o desarrollador externo. Es un pilar para la profesionalización de sus APIs.
 
-## 3. Creación de un Manejador Global con `@ControllerAdvice` y `@ExceptionHandler`
+## 3. Manejo de Excepciones con `@ResponseStatus`
+
+La anotación `@ResponseStatus` en Spring se utiliza para indicar explícitamente el **código de estado HTTP** que debe devolverse cuando se lanza una excepción específica o cuando se ejecuta un método de controlador. Es una forma declarativa de asociar un código de estado HTTP a una situación particular, facilitando la comunicación clara de errores o resultados al cliente.
+
+### 3.1. Uso en clases de excepción personalizadas
+
+Puedes colocar `@ResponseStatus` sobre una clase que extienda `RuntimeException` (o cualquier excepción). Cuando esta excepción se lanza en un controlador, Spring automáticamente enviará la respuesta HTTP con el código de estado y el motivo especificados en la anotación.
+
+```java
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Recurso no encontrado")
+public class RecursoNoEncontradoException extends RuntimeException {
+    public RecursoNoEncontradoException(String mensaje) {
+        super(mensaje);
+    }
+}
+```
+
+Si lanzas esta excepción desde cualquier método de un controlador, la respuesta HTTP será `404` con el motivo "Recurso no encontrado".
+
+### 3.2. Uso en métodos de controlador
+
+También puedes usar `@ResponseStatus` directamente sobre un método de un controlador para indicar el código de estado que debe devolverse cuando ese método se ejecuta correctamente.
+
+```java
+@PostMapping("/usuarios")
+@ResponseStatus(HttpStatus.CREATED)
+public void crearUsuario(@RequestBody Usuario usuario) {
+    // lógica para crear usuario
+}
+```
+
+En este ejemplo, cuando el método termina sin errores, la respuesta será `201 Created`.
+
+En resumen, `@ResponseStatus` es una herramienta útil para controlar el código de estado HTTP de las respuestas en tus APIs Spring, ya sea asociándolo a excepciones personalizadas o a métodos de controlador.
+
+## 4. Creación de un Manejador Global con `@ControllerAdvice` y `@ExceptionHandler`
 
 Sin un mecanismo centralizado para manejar las excepciones, sus controladores se llenarían de bloques `try-catch` repetitivos. Imaginen tener que escribir el mismo código para capturar un `ResourceNotFoundException` en 20 métodos diferentes de 5 controladores distintos. _¡Sería una pesadilla de mantenimiento y un caldo de cultivo para inconsistencias!_
 
 Aquí es donde entra en juego la magia de `@ControllerAdvice` y `@ExceptionHandler`. Juntos, permiten crear una **capa de manejo de errores global** que intercepta las excepciones a medida que ocurren, las procesa y devuelve una respuesta HTTP estandarizada, todo desde un único lugar.
 
-### 3.1. `@ControllerAdvice`
+### 4.1. `@ControllerAdvice`
 
 - **Propósito**: Esta anotación marca una clase como un "asistente" global para los controladores. Imagínenlo como un director de orquesta que supervisa el comportamiento de todos (o un grupo específico) de los músicos (controladores). Puede manejar excepciones, procesar datos antes de que lleguen a los controladores (con `@InitBinder`), o modificar las respuestas de los controladores (con `@ResponseBodyAdvice`).
 - **Ámbito**: Por defecto, un `@ControllerAdvice` aplica a todos los controladores de la aplicación. Si necesitan restringirlo, pueden usar atributos como `basePackages = {"com.miapi.miproyecto.controller"}` o `assignableTypes = {MySpecificController.class}`.
 - **Ubicación**: Generalmente, se crea una clase separada en un paquete como `config.exception` o `config.error`.
 
-### 3.2. `@ExceptionHandler(TipoDeExcepcion.class)`
+### 4.2. `@ExceptionHandler(TipoDeExcepcion.class)`
 
 - **Propósito**: Esta anotación se coloca sobre un método dentro de una clase `@ControllerAdvice` (o, menos comúnmente para el manejo global, dentro de un controlador individual). Su función es específica: le indica a Spring que **este método particular debe ser invocado** cada vez que una excepción del `TipoDeExcepcion` especificado (o cualquier subclase de él) sea lanzada por cualquier método dentro de los controladores que están bajo la influencia de este `@ControllerAdvice`.
 - **Mecanismo de Selección**: Cuando una excepción es lanzada, Spring busca el `@ExceptionHandler` más específico que pueda manejar esa excepción. Por ejemplo, si tienen un manejador para `RuntimeException` y otro para `IllegalArgumentException` (que es una subclase de `RuntimeException`), Spring elegirá el manejador para `IllegalArgumentException` si esa es la excepción lanzada. Si no encuentra uno más específico, recurrirá al manejador de la superclase.
@@ -166,7 +204,7 @@ Aquí es donde entra en juego la magia de `@ControllerAdvice` y `@ExceptionHandl
   - Y otros, dependiendo de la necesidad.
 - **Retorno del Método**: El método `@ExceptionHandler` puede devolver cualquier cosa que un método de controlador normal pueda devolver: un `ResponseEntity`, un `String` (para resolución de vistas, aunque no es común en REST), o incluso `void` (si solo quieren loggear la excepción). Para APIs REST, `ResponseEntity` es casi siempre la opción correcta para tener control sobre el código de estado y el cuerpo de la respuesta.
 
-### 3.3. Ejemplo de Implementación de un `GlobalExceptionHandler` (Esqueleto)
+### 4.3. Ejemplo de Implementación de un `GlobalExceptionHandler` (Esqueleto)
 
 ```Java
 package com.miapi.miproyecto.error; // Donde definimos nuestros errores y manejadores
@@ -226,13 +264,13 @@ public class GlobalExceptionHandler {
 - **Mantenibilidad Mejorada**: Añadir un nuevo tipo de error o cambiar el formato de las respuestas de error es tan simple como añadir un nuevo método `@ExceptionHandler` o modificar la clase `ApiErrorResponse`.
 - `Depuración Simplificada`: Con un formato de error unificado y el registro adecuado en los manejadores, depurar problemas se vuelve mucho más eficiente.
 
-## 4. Formato Unificado de Respuesta de Error
+## 5. Formato Unificado de Respuesta de Error
 
 Para que una API sea realmente profesional y fácil de consumir, no basta con devolver el código de estado HTTP correcto. Los clientes de su API (sean otros servicios, aplicaciones móviles o frontends web) necesitan información adicional y estructurada para entender la causa del error y actuar en consecuencia. Un mensaje de error poco claro o un formato inconsistente pueden llevar a frustración y errores en la integración.
 
 Por ello, la **estandarización del formato de las respuestas de error** es una práctica fundamental. Significa que, sin importar la causa o el tipo de error, la estructura JSON que el cliente reciba siempre será la misma, variando solo los valores de sus campos.
 
-### 4.1. Formato Propuesto
+### 5.1. Formato Propuesto
 
 Un formato común y altamente efectivo para las respuestas de error incluye los siguientes campos:
 
@@ -252,7 +290,7 @@ Un formato común y altamente efectivo para las respuestas de error incluye los 
   - **Propósito**: La URI (Uniform Resource Identifier) de la solicitud que generó el error. Ayuda a identificar rápidamente qué endpoint de la API fue invocado cuando ocurrió el problema.
   - **Implementación**: Un `String` que se obtiene de `HttpServletRequest.getRequestURI()`.
 
-### 4.2. Implementación de la Clase `ApiErrorResponse`
+### 5.2. Implementación de la Clase `ApiErrorResponse`
 
 Crearemos una clase POJO (Plain Old Java Object) que sirva como el modelo para nuestras respuestas de error.
 
@@ -310,7 +348,7 @@ public class ApiErrorResponse {
 }
 ```
 
-### 4.3. Integración en el `GlobalExceptionHandler`
+### 5.3. Integración en el `GlobalExceptionHandler`
 
 Ahora, modificaremos los métodos `handle` de nuestro `GlobalExceptionHandler` para que devuelvan instancias de `ApiErrorResponse`, asegurando que todas las respuestas de error sigan este formato.
 
@@ -356,24 +394,24 @@ public class GlobalExceptionHandler {
 }
 ```
 
-### 4.4. Beneficios de la Estandarización
+### 5.4. Beneficios de la Estandarización
 
 - **Predecibilidad para Clientes**: Los desarrolladores que consumen su API siempre sabrán qué estructura de error esperar, lo que simplifica enormemente la implementación del manejo de errores en su lado.
 - **Depuración Eficiente**: La información como `timestamp` y `path` facilita la correlación de errores reportados por los clientes con los logs del servidor.
 - **Consistencia en la API**: Su API presentará un frente profesional y coherente, sin importar el tipo de error que ocurra.
 - **Facilita la Automatización**: Los sistemas automatizados pueden parsear fácilmente las respuestas de error y reaccionar de manera inteligente.
 
-### 4.5. Validaciones con `spring-boot-starter-validation`
+### 5.5. Validaciones con `spring-boot-starter-validation`
 
 La validación de datos de entrada es la primera y una de las más importantes líneas de defensa para la integridad de su aplicación. Antes de que cualquier dato llegue a su lógica de negocio o base de datos, debe ser verificado para asegurar que cumple con todas las reglas y expectativas. Esto previene datos corruptos, errores en tiempo de ejecución y posibles vulnerabilidades de seguridad. Spring Boot facilita enormemente esto gracias a su integración con la especificación Jakarta Bean Validation (JSR 380).
 
 Cuando un objeto anotado con `@Valid` no cumple con una o más de sus reglas de validación, Spring automáticamente lanza una excepción específica: `MethodArgumentNotValidException`. Esta excepción es la que nuestro manejador global de excepciones (`@ControllerAdvice`) debe interceptar y procesar para devolver una respuesta de error estandarizada y detallada al cliente.
 
-## 5. Personalización de DTOs con la Librería Jackson
+## 6. Personalización de DTOs con la Librería Jackson
 
 **Jackson** es la librería predeterminada en Spring Boot para la **serialización** (convertir objetos Java a JSON) y **deserialización** (convertir JSON a objetos Java). Aunque Jackson funciona automáticamente, sus anotaciones les permiten un **control fino** sobre cómo se realizan estas conversiones, lo cual es vital para el diseño de APIs flexibles, seguras y eficientes.
 
-### 5.1. ¿Por qué personalizar con Jackson?
+### 6.1. ¿Por qué personalizar con Jackson?
 
 - **Consistencia de Nombres**: Adaptarse a convenciones de nombrado JSON (ej., `snake_case`) aunque su Java use `camelCase`.
 - **Seguridad y Privacidad**: Excluir campos sensibles (ej., contraseñas) del JSON de salida.
@@ -381,7 +419,7 @@ Cuando un objeto anotado con `@Valid` no cumple con una o más de sus reglas de 
 - **Respuestas Limpias**: Omitir campos nulos o vacíos para un JSON más compacto.
 - **Formatos Específicos**: Controlar el formato de fechas, números, etc.
 
-### 5.2. Anotaciones Jackson Comunes para DTOs
+### 6.2. Anotaciones Jackson Comunes para DTOs
 
 1. `@JsonProperty("nombre_en_json")`:
     - **Uso**: Se coloca sobre un campo, getter, setter o parámetro de constructor.
@@ -473,7 +511,7 @@ Cuando un objeto anotado con `@Valid` no cumple con una o más de sus reglas de 
 
 **Impacto en su API**: Al dominar estas anotaciones, sus DTOs no solo transportarán datos, sino que se convertirán en contratos de comunicación precisos y robustos, mejorando la seguridad, la flexibilidad y la calidad de su API.
 
-## 6. Ejercicio Práctico en Clase
+## 7. Ejercicio Práctico en Clase
 
 Vamos a aplicar el manejo de excepciones global y la personalización de DTOs con Jackson en un ejemplo de registro de usuarios.
 

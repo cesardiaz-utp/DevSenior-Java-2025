@@ -11,20 +11,23 @@
     2. Categorías de Códigos de Estado HTTP
     3. La Importancia de la Precisión
 2. Uso de `ResponseEntity` para Devolver Distintos Mensajes de Respuesta
-3. Creación de un Manejador Global con `@ControllerAdvice` y `@ExceptionHandler`
+3. Manejo de Excepciones con `@ResponseStatus`
+    1. Uso en clases de excepción personalizadas
+    2. Uso en métodos de controlador
+4. Creación de un Manejador Global con `@ControllerAdvice` y `@ExceptionHandler`
     1. `@ControllerAdvice`
     2. `@ExceptionHandler(TipoDeExcepcion.class)`
     3. Ejemplo de Implementación de un `GlobalExceptionHandler` (Esqueleto)
-4. Formato Unificado de Respuesta de Error
+5. Formato Unificado de Respuesta de Error
     1. Formato Propuesto
     2. Implementación de la Clase `ApiErrorResponse`
     3. Integración en el `GlobalExceptionHandler`
     4. Beneficios de la Estandarización
     5. Validaciones con `spring-boot-starter-validation`
-5. Personalización de DTOs con la Librería Jackson
+6. Personalización de DTOs con la Librería Jackson
     1. ¿Por qué personalizar con Jackson?
     2. Anotaciones Jackson Comunes para DTOs
-6. Ejercicio Práctico en Clase
+7. Ejercicio Práctico en Clase
 
 ### [Tutoría](2-tutoria.md)
 
