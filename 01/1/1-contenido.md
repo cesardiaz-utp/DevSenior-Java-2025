@@ -254,6 +254,8 @@ Ahora, ¡manos a la obra con tu primer programa! La tradición dicta empezar con
 
 ### 3.2. Entendiendo la Sintaxis Básica de Java
 
+![Sintaxis Básica de Java](assets/sintaxis-java.png)
+
 Veamos algunas reglas fundamentales del lenguaje Java:
 
 - **Sentencias (Statements)**: Son las instrucciones que le das a la computadora para que realice una acción. La mayoría de las sentencias en Java terminan con un **punto y coma** (`;`).

@@ -36,7 +36,7 @@
 #### Material adicional
 
 - [Curso de Git desde Cero - Aprende Git](https://youtu.be/h2ZzlNVl-nI)
-- Libro: [PRO Git](assets/progit_es.pdf)
+- Libro: [PRO Git](https://github.com/progit/progit2-es/releases/download/2.1.23/progit.pdf)
 
 ##### Cursos largos
 
