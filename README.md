@@ -14,12 +14,12 @@
 * [Clase 3](02/3): Modelado Avanzado de Clases en POO.
 * [Clase 4](02/4): Proyecto Integrador Orientado a Objetos con IA.
 
-## [Modulo 03](03) - Interfaces Gráficas de Usuario Modernas (GUI Web Embebida y Java  FullStack)
+## [Modulo 03](03) - Excepciones, Logging y Pruebas Unitarias
 
-* [Clase 1](03/1): Introducción a Interfaces Gráficas Modernas en Java.
-* [Clase 2](03/2): Formularios interactivos, navegación y eventos.
-* [Clase 3](03/3): Embebido de Interfaces Web Personalizadas desde Java.
-* [Clase 4](03/4): Proyecto Final de Interfaz Gráfica con Asistencia IA.
+* [Clase 1](03/1): Gestores de Proyectos, Excepciones y Manejo de Errores en Java.
+* [Clase 2](03/2): Logs y Depuración con Log4j2 y SLF4j.
+* [Clase 3](03/3): Pruebas Unitarias con JUnit y Mockito.
+* [Clase 4](03/4):  Proyecto Integrador usando Excepciones, Logging y pruebas unitarias.
 
 ## [Modulo 04](04) - Colecciones y Streams en Java
 
@@ -44,10 +44,10 @@
 
 ## [Modulo 07](07) - Seguridad, JWT y APIs Avanzadas en Spring Boot
 
-* [Clase 1](07/1): Fundamentos de Seguridad en Aplicaciones Spring Boot.
-* [Clase 2](07/2): Implementación de Autenticación con JWT (JSON Web Tokens).
-* [Clase 3](07/3): Manejo de Excepciones Globales y Validaciones Personalizadas.
-* [Clase 4](07/4): Proyecto API Segura – Autenticación, Validación y Control de Acceso.
+* [Clase 1](07/1): Manejo de Excepciones Globales y Validaciones Personalizadas.
+* [Clase 2](07/2): Fundamentos de Seguridad en Aplicaciones Spring Boot.
+* [Clase 3](07/3): Implementación de Autenticación con JWT (JSON Web Tokens).
+* [Clase 4](07/4): Java Records, MapStruct, el Desarrollo Ágil y Scrum.
 
 ## [Modulo 08](08) - React JS Moderno – Interfaces Dinámicas para Aplicaciones Full Stack
 

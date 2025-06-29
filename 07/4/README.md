@@ -2,7 +2,7 @@
 
 ## Modulo 07 - Seguridad, JWT y APIs Avanzadas en Spring Boot
 
-### Clase 4: Java Records, Desarrollo Ágil y Scrum
+### Clase 4: Java Records, MapStruct, el Desarrollo Ágil y Scrum
 
 #### [Contenido](1-contenido.md)
 
@@ -18,8 +18,14 @@
     1. ¿Qué es el Desarrollo Ágil?
     2. Scrum: Un Marco Ágil Popular
     3. Beneficios en el Desarrollo de APIs y Software
+    4. Aplicando Scrum en Equipos Pequeños o Distribuidos
 
 #### [Tutoría](2-tutoria.md)
+
+1. Bienvenida y Recopilación de Dudas Rápidas
+2. Presentación del Proyecto de la Tutoría
+3. Refactorización con Java `Record`s y Mapeo con `MapStruct`
+4. Exploración de Desarrollo Ágil y Scrum
 
 #### [Reto del módulo](3-proyecto.md)
 

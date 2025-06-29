@@ -37,17 +37,6 @@ En este módulo el estudiante aprenderá a asegurar aplicaciones Java con Spring
 - **Ejercicio práctico**:
   - Proteger una API básica (/api/cursos) y permitir solo el acceso autenticado a rutas específicas.
 
-#### Tutoría
-
-- **Objetivos de la tutoría**:
-  - Analizar y reforzar el entendimiento del flujo de seguridad.
-  - Configurar correctamente el acceso seguro a rutas según roles o permisos.
-- **Actividades**:
-  - Implementacion de `UserDetailsService` con conexion a base de datos.
-  - Taller práctico: diferenciar rutas públicas y privadas, crear login básico en memoria.
-  - Diagnóstico de errores comunes (`403 Forbidden`, `401 Unauthorized`).
-  - Casos de estudio: cómo proteger rutas en una API pública y qué endpoints deben ser expuestos sin seguridad.
-
 ### [Clase 03](3) - Implementación de Autenticación con JWT (JSON Web Tokens)
 
 - **Objetivos de aprendizaje**:
@@ -67,44 +56,20 @@ usuario.
   - Implementar un endpoint /login que devuelva un JWT al autenticarse y proteger
 el acceso a /api/privado con dicho token.
 
-#### Tutoría
-
-- **Objetivos de la tutoría**:
-  - Profundizar en la lógica de autenticación sin sesión.
-  - Asegurar la correcta configuración del flujo completo de login y validación de token.
-
-- **Actividades**:
-  - Simulación completa: login, obtención de token, uso en cliente (Postman, VSCode REST Client).
-  - Debug del filtro JWT con breakpoints y validación de claims.
-  - ¿cómo almacenar tokens del lado del cliente? Buenas prácticas para proteger APIs públicas
-
-### [Clase 04](4) - Proyecto API Segura – Autenticación, Validación y Control de Acceso
+### [Clase 04](4) - Java Records, MapStruct, el Desarrollo Ágil y Scrum
 
 - **Objetivos de aprendizaje**:
-  - Integrar seguridad, autenticación JWT, validaciones y manejo de errores en un sistema real.
-  - Construir una API segura, funcional y lista para producción.
+  - Comprender y utilizar las clases `Record` de Java para crear DTOs inmutables y concisos en Spring Boot.
+  - Aplicar `Record` clases en controladores y servicios de Spring Boot.
+  - Implementar el mapeo de objetos utilizando MapStruct para transformar entre entidades y DTOs (incluyendo DTOs basados en Records).
+  - Comprender los principios fundamentales del Desarrollo Ágil.
+  - Explicar la metodología Scrum, sus roles, ceremonias y artefactos.
+  - Identificar cómo el desarrollo Ágil y Scrum se aplican en el contexto de proyectos de desarrollo de APIs y software en general.
 
 - **Contenido**:
-  - Diseño del proyecto: API RESTful segura para gestión de usuarios o productos.
-  - Roles de usuario (ADMIN, USER) y acceso condicional a rutas.
-  - Inicio de sesión con generación de JWT, protección de rutas por rol.
-  - Validaciones exhaustivas de entradas y manejo de errores personalizado.
-  - Documentación básica con Swagger para facilitar pruebas externas.
-
-- **Proyecto en clase**:
-  - Sistema de gestión de usuarios con endpoints:
-    - /registro
-    - /login
-    - /usuarios (`GET` solo para ADMIN)
-    - /perfil (`GET` solo para el propio usuario autenticado)
-
-#### Tutoría
-
-- **Objetivos de la tutoría**:
-  - Evaluar la seguridad, estructura y consistencia del proyecto final del módulo.
-  - Realizar pruebas completas de flujo autenticado y protección de rutas.
-
-- **Actividades**:
-  - Presentación del flujo completo: login → token → consumo de recursos protegidos.
-  - Validación cruzada: pruebas con compañeros para comprobar errores, protección y mensajes.
-  - Publicación del proyecto seguro en GitHub con documentación clara.
+  - Introducción a Java Records: sintaxis, ventajas y ejemplos prácticos para DTOs en Spring Boot.
+  - Uso de Records en controladores y servicios, integración con validaciones y serialización JSON.
+  - Mapeo eficiente entre entidades y DTOs usando MapStruct, ventajas frente a mapeo manual.
+  - Principios del Desarrollo Ágil y el Manifiesto Ágil.
+  - Scrum: roles (Product Owner, Scrum Master, Development Team), eventos (Sprint, Planning, Daily, Review, Retrospective) y artefactos (Product Backlog, Sprint Backlog, Increment).
+  - Beneficios de aplicar Scrum y Ágil en equipos de desarrollo de APIs y software.

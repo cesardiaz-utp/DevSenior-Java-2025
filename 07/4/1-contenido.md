@@ -1,4 +1,4 @@
-# Clase 4: Java Records, Desarrollo Ágil y Scrum
+# Clase 4: Java Records, MapStruct, el Desarrollo Ágil y Scrum
 
 **Hola a todos!**
 ¡Bienvenidos a la **Clase 4 del Módulo 7**! Hemos progresado mucho, desde los fundamentos de Spring Security y JWT hasta hacer nuestras APIs robustas con manejo de excepciones y validaciones. En esta clase, introduciremos una característica moderna de Java: las clases `Record`. Veremos cómo simplifican la escritura de código, especialmente para DTOs, y cómo se integran perfectamente con Spring Boot, mejorando la concisión y la inmutabilidad de nuestros modelos de datos.
@@ -139,7 +139,7 @@ Los `record`s son una elección excelente para usarlos como Data Transfer Object
           String name, // Componente para el nombre del evento
 
           @NotNull(message = "La fecha del evento es obligatoria.")
-          @FutureDate(message = "La fecha del evento debe ser en el futuro.")
+          @Future(message = "La fecha del evento debe ser en el futuro.")
           @Schema(description = "Fecha del evento (AAAA-MM-DD)", example = "2025-01-15")
           LocalDate date, // Componente para la fecha del evento
 
@@ -227,7 +227,7 @@ Observa cómo en el ejemplo anterior, los métodos de los controladores simpleme
 **Beneficios de usar `Record`s para DTOs:**
 
 - **Menos código**: La eliminación de constructores manuales, _getters_, `equals()`, `hashCode()` y `toString()` reduce significativamente la cantidad de código repetitivo. Esto hace que tus DTOs sean mucho más compactos y fáciles de leer.
-- **Inmutabilidad por defecto**: Al ser inmutables, los `record`s son ideales para DTOs que representan instantáneas de datos en un momento dado. Esta característica reduce la superficie de errores relacionados con el estado mutable y simplifica la lógica en sistemas concurrentos.
+- **Inmutabilidad por defecto**: Al ser inmutables, los `record`s son ideales para DTOs que representan instantáneas de datos en un momento dado. Esta característica reduce la superficie de errores relacionados con el estado mutable y simplifica la lógica en sistemas concurrentes.
 - **Legibilidad y Claridad de Intención**: La declaración concisa de un `record` comunica instantáneamente que su propósito es contener datos. Esto mejora la legibilidad del código base y ayuda a otros desarrolladores a comprender rápidamente el contrato de los datos.
 - **Integración Transparente**: Spring Boot, gracias a su integración con la biblioteca Jackson, maneja la serialización de `record`s a JSON y la deserialización de JSON a `record`s de forma automática y eficiente, sin necesidad de configuración adicional.
 
@@ -303,7 +303,30 @@ En el desarrollo de APIs RESTful con Spring Boot, es una práctica común utiliz
 
     **Nota**: Si estás usando Java 17+, es posible que necesites configurar el `maven-compiler-plugin` para usar `target 17` y `source 17`.
 
-2. **Crear una Interfaz de Mapper**: Define una interfaz con las anotaciones de MapStruct. Esta interfaz le dice a MapStruct qué clases mapear.
+2. **Modelos**: Supón que tienes la entidad `Event`, el DTO `EventRequest` (record) y el DTO de respuesta `EventResponse` (record).
+
+    ```Java
+    @Entity
+    public class Event {
+        @Id @GeneratedValue
+        private Long id;
+        private String name;
+        private LocalDate date;
+        private String location;
+        private Integer maxCapacity;
+        // getters y setters
+    }
+    ```
+
+    ```Java
+    public record EventRequest(String name, LocalDate date, String location, Integer maxCapacity) {}
+    ```
+
+    ```Java
+    public record EventResponse(Long id, String name, LocalDate date, String location, Integer maxCapacity) {}
+    ```
+
+3. **Crear una Interfaz de Mapper**: Define una interfaz con las anotaciones de MapStruct. Esta interfaz le dice a MapStruct qué clases mapear.
 
     ```Java
     package com.tuempresa.tuproyecto.mapper;
@@ -317,9 +340,6 @@ En el desarrollo de APIs RESTful con Spring Boot, es una práctica común utiliz
 
     @Mapper(componentModel = "spring") // Hace que MapStruct genere un componente de Spring (@Component)
     public interface EventMapper {
-
-        // Instancia del mapper, aunque con componentModel="spring" se inyectará automáticamente
-        EventMapper INSTANCE = Mappers.getMapper(EventMapper.class);
 
         // Mapea un EventRequest (Record) a una entidad Event
         // MapStruct detecta automáticamente los accesores (ej. name() para EventRequest)
@@ -336,7 +356,7 @@ En el desarrollo de APIs RESTful con Spring Boot, es una práctica común utiliz
 
     `@Mapper(componentModel = "spring")`: Esta anotación es clave. Le indica a MapStruct que genere el mapper como un componente de Spring, lo que te permite inyectarlo en tus servicios o controladores utilizando @Autowired o inyección por constructor.
 
-3. **Uso en Servicios**: Inyecta tu interfaz de mapper en tu servicio y úsala para convertir entre DTOs y entidades.
+4. **Uso en Servicios**: Inyecta tu interfaz de mapper en tu servicio y úsala para convertir entre DTOs y entidades.
 
     ```Java
     import com.tuempresa.tuproyecto.entity.Event;
@@ -383,7 +403,7 @@ En el desarrollo de APIs RESTful con Spring Boot, es una práctica común utiliz
 
 ### 2.3. Compatibilidad con Java Records
 
-MapStruct funciona de forma nativa con Java Records. Cuando mapeas un Record a otra clase (o viceversa), MapStruct utiliza los accessors generados automáticamente (.fieldName()) para Records y los setters o constructores para las otras clases. Esto significa que la declaración del mapper es idéntica a la que usarías con POJOs tradicionales, lo cual es una gran ventaja en términos de concisión y mantenimiento.
+MapStruct funciona de forma nativa con Java Records. Cuando mapeas un Record a otra clase (o viceversa), MapStruct utiliza los accessors generados automáticamente (`.fieldName()`) para Records y los setters o constructores para las otras clases. Esto significa que la declaración del mapper es idéntica a la que usarías con POJOs tradicionales, lo cual es una gran ventaja en términos de concisión y mantenimiento.
 
 ## 3. Desarrollo Ágil y Scrum: Organizando Equipos de Software
 
@@ -393,146 +413,137 @@ En el mundo actual del desarrollo de software, la forma en que los equipos organ
 
 El Desarrollo Ágil es una filosofía de desarrollo de software que enfatiza la flexibilidad, la colaboración, la entrega continua y la adaptación al cambio. Nació como una respuesta a las limitaciones de las metodologías tradicionales ("cascada"), que a menudo resultaban en proyectos lentos, inflexibles y que no satisfacían las necesidades cambiantes del cliente. Se basa en los valores y principios del Manifiesto Ágil, publicado en 2001:
 
-Individuos e interacciones sobre procesos y herramientas: Este es un pilar fundamental para el trabajo en grupo. Significa que, si bien tener procesos bien definidos y herramientas sofisticadas puede ser útil, el éxito de un proyecto depende en última instancia de la calidad de la comunicación y la colaboración entre los miembros del equipo. Priorizar las conversaciones cara a cara (o virtuales sincrónicas), la resolución conjunta de problemas y el respeto mutuo entre los desarrolladores, testers, Product Owners y otros stakeholders, generará un mejor resultado que simplemente seguir un manual de procesos. Un equipo que interactúa proactivamente para identificar y eliminar obstáculos, compartir conocimientos y ayudarse mutuamente, es mucho más resiliente y productivo.
-
-Software funcionando sobre documentación exhaustiva: El objetivo principal del desarrollo es entregar software que funcione y que aporte valor al cliente de manera temprana y continua. La documentación es importante para la comprensión y el mantenimiento, pero no debe ser un fin en sí misma, ni retrasar la entrega de funcionalidades clave. En un contexto de trabajo en grupo, esto implica que el equipo debe enfocarse en la construcción colaborativa de código de alta calidad que se pueda probar y entregar, y que sirva como una forma de "documentación viva". Las discusiones y decisiones se centran en cómo hacer que el software funcione, y la documentación se crea de forma incremental y justo a tiempo, a menudo en colaboración con el cliente.
-
-Colaboración con el cliente sobre negociación contractual: En lugar de definir todos los requisitos en un contrato inicial y luego ejecutarlo rígidamente, el desarrollo ágil promueve una colaboración constante y activa con el cliente a lo largo de todo el ciclo de vida del proyecto. Para el equipo de desarrollo, esto significa que el cliente no es una entidad distante, sino un miembro activo en el proceso. Se busca la retroalimentación frecuente y directa, a menudo a través de demostraciones de software funcionando. Esta interacción continua asegura que el equipo esté construyendo el producto correcto, alineado con las necesidades cambiantes del negocio, y fomenta una relación de confianza y un entendimiento compartido del objetivo.
-
-Respuesta al cambio sobre seguir un plan: El mundo de los negocios es dinámico, y los requisitos de software pueden cambiar. Las metodologías ágiles abrazan el cambio como una oportunidad para entrgar un producto superior, en lugar de verlo como un problema que debe evitarse a toda costa. Esto se logra mediante ciclos de desarrollo cortos y la capacidad de pivotar rápidamente. En el trabajo en grupo, esto requiere que el equipo sea adaptable y resiliente. La planificación no es estática; es un proceso continuo que se ajusta a medida que se aprende más sobre el problema o las necesidades del mercado. Los equipos deben estar preparados para ajustar sus prioridades y su enfoque, lo que demanda una comunicación constante y una toma de decisiones colaborativa.
+- **Individuos e interacciones sobre procesos y herramientas**: Este es un pilar fundamental para el trabajo en grupo. Significa que, si bien tener procesos bien definidos y herramientas sofisticadas puede ser útil, el éxito de un proyecto depende en última instancia de la **calidad de la comunicación y la colaboración entre los miembros del equipo**. Priorizar las conversaciones cara a cara (o virtuales sincrónicas), la resolución conjunta de problemas y el respeto mutuo entre los desarrolladores, testers, Product Owners y otros stakeholders, generará un mejor resultado que simplemente seguir un manual de procesos. Un equipo que interactúa proactivamente para identificar y eliminar obstáculos, compartir conocimientos y ayudarse mutuamente, es mucho más resiliente y productivo.
+- **Software funcionando sobre documentación exhaustiva**: El objetivo principal del desarrollo es entregar software que funcione y que aporte valor al cliente de manera temprana y continua. La documentación es importante para la comprensión y el mantenimiento, pero no debe ser un fin en sí misma, ni retrasar la entrega de funcionalidades clave. En un contexto de trabajo en grupo, esto implica que el equipo debe enfocarse en la **construcción colaborativa de código de alta calidad que se pueda probar y entregar**, y que sirva como una forma de "documentación viva". Las discusiones y decisiones se centran en cómo hacer que el software funcione, y la documentación se crea de forma incremental y justo a tiempo, a menudo en colaboración con el cliente.
+- **Colaboración con el cliente sobre negociación contractual**: En lugar de definir todos los requisitos en un contrato inicial y luego ejecutarlo rígidamente, el desarrollo ágil promueve una **colaboración constante y activa con el cliente** a lo largo de todo el ciclo de vida del proyecto. Para el equipo de desarrollo, esto significa que el cliente no es una entidad distante, sino un miembro activo en el proceso. Se busca la **retroalimentación frecuente y directa**, a menudo a través de demostraciones de software funcionando. Esta interacción continua asegura que el equipo esté construyendo el producto correcto, alineado con las necesidades cambiantes del negocio, y fomenta una relación de confianza y un entendimiento compartido del objetivo.
+- **Respuesta al cambio sobre seguir un plan**: El mundo de los negocios es dinámico, y los requisitos de software pueden cambiar. Las metodologías ágiles abrazan el cambio como una oportunidad para entregar un producto superior, en lugar de verlo como un problema que debe evitarse a toda costa. Esto se logra mediante ciclos de desarrollo cortos y la capacidad de pivotar rápidamente. En el trabajo en grupo, esto requiere que el equipo sea **adaptable y resiliente**. La planificación no es estática; es un proceso continuo que se ajusta a medida que se aprende más sobre el problema o las necesidades del mercado. Los equipos deben estar preparados para ajustar sus prioridades y su enfoque, lo que demanda una comunicación constante y una toma de decisiones colaborativa.
 
 Los principios ágiles adicionales que complementan el manifiesto incluyen la entrega temprana y continua de software valioso, la auto-organización de los equipos, la búsqueda constante de la excelencia técnica, la simplicidad y la reflexión regular para ajustar y mejorar el proceso.
 
 ### 3.2. Scrum: Un Marco Ágil Popular
 
-Scrum es el marco de trabajo ágil más popular y ampliamente adoptado. Es un marco liviano que ayuda a las personas, equipos y organizaciones a generar valor a través de soluciones adaptativas para problemas complejos. Scrum se define por sus roles, eventos y artefactos, que trabajan en conjunto para crear un ciclo de inspección y adaptación continuo.
+**Scrum** es el marco de trabajo ágil más popular y ampliamente adoptado. Es un marco liviano que ayuda a las personas, equipos y organizaciones a generar valor a través de soluciones adaptativas para problemas complejos. Scrum se define por sus roles, eventos y artefactos, que trabajan en conjunto para crear un ciclo de inspección y adaptación continuo.
 
-Roles en Scrum (Los 3 Pilares del Equipo Scrum):
+![Scrum](https://www.ilunion.com/sites/default/files/styles/webp/public/2025-01/Etapas_SCRUM_0.jpeg.webp?itok=C3rcVjL9)
 
-Product Owner (PO - Propietario del Producto):
+#### Roles en Scrum (Los 3 Pilares del Equipo Scrum)
 
-Función Principal: Es la persona responsable de maximizar el valor del producto que construye el Equipo de Desarrollo. Actúa como el puente entre el cliente/negocio y el equipo.
+![Scrum Roles Stakeholders](https://www.scrum-institute.org/images_scrum/Scrum_Roles_Stakeholders.jpg)
 
-Responsabilidades Clave:
+- **Product Owner (PO - Propietario del Producto)**
+  - **Función Principal**: Es la persona responsable de maximizar el valor del producto que construye el Equipo de Desarrollo. Actúa como el puente entre el cliente/negocio y el equipo.
+  - **Responsabilidades Clave**:
+    - Gestionar y ser el único responsable del `Product Backlog` (creación, refinamiento, ordenamiento y visibilidad). Esto implica trabajar en estrecha **colaboración con el Equipo de Desarrollo** para asegurar que los ítems del _backlog_ sean claros y listos para ser implementados, y con los _stakeholders_ para entender y priorizar sus necesidades.
+    - Asegurar que los elementos del Product Backlog sean claros, concisos y entendidos por el Equipo de Desarrollo, fomentando la **comunicación bidireccional y el entendimiento compartido**.
+    - Comunicar la visión del producto y los objetivos de negocio a todo el equipo, manteniendo a todos **alineados y motivados** hacia un objetivo común.
+    - Tomar decisiones sobre qué funcionalidades deben construirse y en qué orden, basándose en el **valor para el negocio y la factibilidad técnica** discutida con el equipo.
 
-Gestionar y ser el único responsable del Product Backlog (creación, refinamiento, ordenamiento y visibilidad). Esto implica trabajar en estrecha colaboración con el Equipo de Desarrollo para asegurar que los ítems del backlog sean claros y listos para ser implementados, y con los stakeholders para entender y priorizar sus necesidades.
+- **Scrum Master (SM)**:
+  - **Función Principal**: Es un líder de servicio para el Equipo Scrum. Su objetivo es ayudar al equipo a entender y aplicar Scrum, eliminando impedimentos y asegurando que el proceso sea efectivo.
+  - **Responsabilidades Clave**:
+    - **Facilitar las ceremonias de Scrum** (Sprint Planning, Daily Scrum, Sprint Review, Retrospective), asegurando que sean productivas y que el equipo se adhiera a las reglas de tiempo y propósito.
+    - **Entrenar y mentorizar** al Product Owner y al Equipo de Desarrollo en las prácticas y valores de Scrum. Esto incluye ayudar al equipo a mejorar sus habilidades de colaboración y auto-organización.
+    - Ayudar a **resolver obstáculos e impedimentos** que bloqueen al equipo, actuando como un facilitador para que el equipo pueda concentrarse en su trabajo principal. Esto a menudo implica interactuar con personas fuera del equipo para despejar el camino.
+    - Proteger al equipo de interrupciones externas, creando un **ambiente de trabajo enfocado y seguro** que fomente la productividad y la cohesión del equipo.
+    - Fomentar la **auto-organización y la multifuncionalidad** dentro del equipo, capacitando a los miembros para que tomen decisiones colectivas y compartan responsabilidades.
 
-Asegurar que los elementos del Product Backlog sean claros, concisos y entendidos por el Equipo de Desarrollo, fomentando la comunicación bidireccional y el entendimiento compartido.
+- **Development Team (Equipo de Desarrollo)**:
+  - **Función Principal**: Son el grupo de profesionales que construyen el Incremento del producto. Son **auto-organizados** (deciden cómo hacer el trabajo para lograr el objetivo del Sprint) y **multifuncionales** (tienen todas las habilidades necesarias para entregar un Incremento sin depender excesivamente de personas externas al equipo).
+  - **Responsabilidades Clave**:
+    - **Planificar el `Sprint Backlog`** de forma conjunta, decidiendo qué pueden comprometerse a entregar en un Sprint. Esto requiere una **colaboración intensa** para descomponer los ítems del Product Backlog en tareas, estimar el esfuerzo y asignarse el trabajo.
+    - **Convertir los elementos del Product Backlog seleccionados en un "Incremento" funcional** al final de cada Sprint. Esto implica **trabajo colaborativo diario**, ayudándose mutuamente para superar desafíos técnicos y de implementación.
+    - Ser responsables colectivamente de la **calidad del trabajo** y de la entrega de valor. El equipo comparte la responsabilidad del éxito y del fracaso.
+    - **Colaborar estrechamente y de forma continua** con el Product Owner y el Scrum Master, así como con otros _stakeholders_ cuando sea necesario, para clarificar requisitos, resolver dudas y demostrar el progreso.
+    - No hay títulos jerárquicos internos (ej., "líder técnico") dentro del Equipo de Desarrollo. Todos son desarrolladores que trabajan juntos para un objetivo común, fomentando un **ambiente de igualdad y responsabilidad compartida**.
 
-Comunicar la visión del producto y los objetivos de negocio a todo el equipo, manteniendo a todos alineados y motivados hacia un objetivo común.
+#### Eventos (Ceremonias) en Scrum
 
-Tomar decisiones sobre qué funcionalidades deben construirse y en qué orden, basándose en el valor para el negocio y la factibilidad técnica discutida con el equipo.
+Los eventos de Scrum son oportunidades fijas en el tiempo (_time-boxed_) para la inspección y adaptación, y son fundamentales para la colaboración efectiva del equipo.
 
-Scrum Master (SM):
+- **Sprint**: Es el corazón de Scrum y un contenedor de tiempo fijo (generalmente de 1 a 4 semanas, siendo 2 semanas lo más común). Dentro de cada Sprint, todos los demás eventos de Scrum tienen lugar. Un nuevo Sprint comienza inmediatamente después de la finalización del anterior. El objetivo es entregar un "Incremento" de producto potencialmente liberable. El Sprint en sí mismo es una oportunidad para que el equipo trabaje en conjunto de forma ininterrumpida y enfocada.
 
-Función Principal: Es un líder de servicio para el Equipo Scrum. Su objetivo es ayudar al equipo a entender y aplicar Scrum, eliminando impedimentos y asegurando que el proceso sea efectivo.
+- **Sprint Planning (Planificación del Sprint)**:
+  - **Cuándo**: Al inicio de cada Sprint.
+  - **Duración**: _Time-boxed_ a 8 horas para un Sprint de un mes (proporcionalmente menos para Sprints más cortos).
+  - **Propósito**: El Equipo Scrum colabora intensamente para definir:
+    - **¿Qué se va a entregar en este Sprint?** (Sprint Goal y elementos seleccionados del Product Backlog). Esta es una **negociación activa y colaborativa** entre el Product Owner y el Equipo de Desarrollo, donde el equipo se compromete con lo que cree que es factible.
+    - **¿Cómo se va a conseguir ese trabajo?** (Planificación detallada de tareas que forman el Sprint Backlog). El Equipo de Desarrollo **se auto-organiza** para dividir el trabajo, identificar dependencias y estimar el esfuerzo, lo que fomenta el sentido de pertenencia y la responsabilidad compartida.
 
-Responsabilidades Clave:
+- **Daily Scrum (Scrum Diario / Stand-up)**:
+  - **Cuándo**: Cada día del Sprint, a la misma hora y en el mismo lugar.
+  - **Duración**: _Time-boxed_ a 15 minutos.
+  - **Propósito**: Es una reunión clave de **sincronización y planificación para el Equipo de Desarrollo**. No es un informe de estado para el Scrum Master o el Product Owner (aunque pueden asistir). El equipo inspecciona su progreso hacia el `Sprint Goal` y adapta el `Sprint Backlog` para el día siguiente. Es una oportunidad diaria para que los miembros del equipo **colaboren activamente, identifiquen impedimentos y coordinen sus esfuerzos**. Las preguntas comunes que el equipo se hace ayudan a enfocar la discusión en el progreso colectivo:
+    - ¿Qué hice ayer que ayudó al Equipo de Desarrollo a lograr el objetivo del Sprint?
+    - ¿Qué haré hoy para ayudar al Equipo de Desarrollo a lograr el objetivo del Sprint?
+    - ¿Veo algún impedimento que me impida a mí o al Equipo de Desarrollo lograr el objetivo del Sprint?"
 
-Facilitar las ceremonias de Scrum (Sprint Planning, Daily Scrum, Sprint Review, Retrospective), asegurando que sean productivas y que el equipo se adhiera a las reglas de tiempo y propósito.
+- **Sprint Review (Revisión del Sprint)**:
+  - **Cuándo**: Al final de cada Sprint.
+  - **Duración**: _Time-boxed_ a 4 horas para un Sprint de un mes.
+  - **Propósito**: El Equipo Scrum y los _stakeholders_ clave (clientes, usuarios, gerentes) colaboran para inspeccionar el **"Incremento"** completado y adaptar el Product Backlog si es necesario. El Equipo de Desarrollo **demuestra el software funcional** que ha creado durante el Sprint, y se produce una **discusión abierta y transparente** sobre el progreso, el estado del producto y las posibles futuras funcionalidades. Esta es una interacción vital para asegurar que el equipo esté construyendo el producto correcto y para obtener retroalimentación directa y valiosa.
 
-Entrenar y mentorizar al Product Owner y al Equipo de Desarrollo en las prácticas y valores de Scrum. Esto incluye ayudar al equipo a mejorar sus habilidades de colaboración y auto-organización.
+- **Sprint Retrospective (Retrospectiva del Sprint)**:
+  - **Cuándo**: Después del Sprint Review y antes del siguiente Sprint Planning.
+  - **Duración**: _Time-boxed_ a 3 horas para un Sprint de un mes.
+  - **Propósito**: Es una reunión de **mejora continua** para el Equipo Scrum. El equipo inspecciona cómo trabajaron durante el Sprint en términos de procesos, herramientas, relaciones e interacciones. El objetivo es identificar qué salió bien, qué se puede mejorar, y crear un plan de acciones concretas para el próximo Sprint. Es un espacio seguro para la **reflexión honesta y la colaboración** para optimizar el rendimiento del equipo, la comunicación y la calidad del trabajo.
 
-Ayudar a resolver obstáculos e impedimentos que bloqueen al equipo, actuando como un facilitador para que el equipo pueda concentrarse en su trabajo principal. Esto a menudo implica interactuar con personas fuera del equipo para despejar el camino.
-
-Proteger al equipo de interrupciones externas, creando un ambiente de trabajo enfocado y seguro que fomente la productividad y la cohesión del equipo.
-
-Fomentar la auto-organización y la multifuncionalidad dentro del equipo, capacitando a los miembros para que tomen decisiones colectivas y compartan responsabilidades.
-
-Development Team (Equipo de Desarrollo):
-
-Función Principal: Son el grupo de profesionales que construyen el Incremento del producto. Son auto-organizados (deciden cómo hacer el trabajo para lograr el objetivo del Sprint) y multifuncionales (tienen todas las habilidades necesarias para entregar un Incremento sin depender excesivamente de personas externas al equipo).
-
-Responsabilidades Clave:
-
-Planificar el Sprint Backlog de forma conjunta, decidiendo qué pueden comprometerse a entregar en un Sprint. Esto requiere una colaboración intensa para descomponer los ítems del Product Backlog en tareas, estimar el esfuerzo y asignarse el trabajo.
-
-Convertir los elementos del Product Backlog seleccionados en un "Incremento" funcional al final de cada Sprint. Esto implica trabajo colaborativo diario, ayudándose mutuamente para superar desafíos técnicos y de implementación.
-
-Ser responsables colectivamente de la calidad del trabajo y de la entrega de valor. El equipo comparte la responsabilidad del éxito y del fracaso.
-
-Colaborar estrechamente y de forma continua con el Product Owner y el Scrum Master, así como con otros stakeholders cuando sea necesario, para clarificar requisitos, resolver dudas y demostrar el progreso.
-
-No hay títulos jerárquicos internos (ej., "líder técnico") dentro del Equipo de Desarrollo. Todos son desarrolladores que trabajan juntos para un objetivo común, fomentando un ambiente de igualdad y responsabilidad compartida.
-
-Eventos (Ceremonias) en Scrum:
-
-Los eventos de Scrum son oportunidades fijas en el tiempo (time-boxed) para la inspección y adaptación, y son fundamentales para la colaboración efectiva del equipo.
-
-Sprint: Es el corazón de Scrum y un contenedor de tiempo fijo (generalmente de 1 a 4 semanas, siendo 2 semanas lo más común). Dentro de cada Sprint, todos los demás eventos de Scrum tienen lugar. Un nuevo Sprint comienza inmediatamente después de la finalización del anterior. El objetivo es entregar un "Incremento" de producto potencialmente liberable. El Sprint en sí mismo es una oportunidad para que el equipo trabaje en conjunto de forma ininterrumpida y enfocada.
-
-Sprint Planning (Planificación del Sprint):
-
-Cuándo: Al inicio de cada Sprint.
-
-Duración: Time-boxed a 8 horas para un Sprint de un mes (proporcionalmente menos para Sprints más cortos).
-
-Propósito: El Equipo Scrum colabora intensamente para definir:
-
-¿Qué se va a entregar en este Sprint? (Sprint Goal y elementos seleccionados del Product Backlog). Esta es una negociación activa y colaborativa entre el Product Owner y el Equipo de Desarrollo, donde el equipo se compromete con lo que cree que es factible.
-
-¿Cómo se va a conseguir ese trabajo? (Planificación detallada de tareas que forman el Sprint Backlog). El Equipo de Desarrollo se auto-organiza para dividir el trabajo, identificar dependencias y estimar el esfuerzo, lo que fomenta el sentido de pertenencia y la responsabilidad compartida.
-
-Daily Scrum (Scrum Diario / Stand-up):
-
-Cuándo: Cada día del Sprint, a la misma hora y en el mismo lugar.
-
-Duración: Time-boxed a 15 minutos.
-
-Propósito: Es una reunión clave de sincronización y planificación para el Equipo de Desarrollo. No es un informe de estado para el Scrum Master o el Product Owner (aunque pueden asistir). El equipo inspecciona su progreso hacia el Sprint Goal y adapta el Sprint Backlog para el día siguiente. Es una oportunidad diaria para que los miembros del equipo colaboren activamente, identifiquen impedimentos y coordinen sus esfuerzos. Las preguntas comunes que el equipo se hace ayudan a enfocar la discusión en el progreso colectivo: "¿Qué hice ayer que ayudó al Equipo de Desarrollo a lograr el objetivo del Sprint?", "¿Qué haré hoy para ayudar al Equipo de Desarrollo a lograr el objetivo del Sprint?", "¿Veo algún impedimento que me impida a mí o al Equipo de Desarrollo lograr el objetivo del Sprint?".
-
-Sprint Review (Revisión del Sprint):
-
-Cuándo: Al final de cada Sprint.
-
-Duración: Time-boxed a 4 horas para un Sprint de un mes.
-
-Propósito: El Equipo Scrum y los stakeholders clave (clientes, usuarios, gerentes) colaboran para inspeccionar el "Incremento" completado y adaptar el Product Backlog si es necesario. El Equipo de Desarrollo demuestra el software funcional que ha creado durante el Sprint, y se produce una discusión abierta y transparente sobre el progreso, el estado del producto y las posibles futuras funcionalidades. Esta es una interacción vital para asegurar que el equipo esté construyendo el producto correcto y para obtener retroalimentación directa y valiosa.
-
-Sprint Retrospective (Retrospectiva del Sprint):
-
-Cuándo: Después del Sprint Review y antes del siguiente Sprint Planning.
-
-Duración: Time-boxed a 3 horas para un Sprint de un mes.
-
-Propósito: Es una reunión de mejora continua para el Equipo Scrum. El equipo inspecciona cómo trabajaron durante el Sprint en términos de procesos, herramientas, relaciones e interacciones. El objetivo es identificar qué salió bien, qué se puede mejorar, y crear un plan de acciones concretas para el próximo Sprint. Es un espacio seguro para la reflexión honesta y la colaboración para optimizar el rendimiento del equipo, la comunicación y la calidad del trabajo.
-
-Artefactos de Scrum:
+#### Artefactos de Scrum
 
 Los artefactos de Scrum representan el trabajo o el valor para proporcionar transparencia y oportunidades de inspección y adaptación.
 
-Product Backlog (Pila del Producto):
+- **Product Backlog (Pila del Producto)**:
+  - **Descripción**: Una lista dinámica, priorizada y ordenada de todo el trabajo que se necesita realizar en el producto. Contiene características, requisitos, mejoras y correcciones de errores, a menudo expresados como Historias de Usuario. Es la única fuente de trabajo para el Equipo de Desarrollo.
+  - **Características**: Es **_"DETAILED Appropriately, Estimated, Emergent, Prioritized" (DEEP)_**. Nunca está "terminado", evoluciona constantemente. Es gestionado por el Product Owner, pero su contenido y priorización son el resultado de la colaboración constante con el Equipo de Desarrollo y los _stakeholders_.
+  - **Responsable**: Product Owner.
 
-Descripción: Una lista dinámica, priorizada y ordenada de todo el trabajo que se necesita realizar en el producto. Contiene características, requisitos, mejoras y correcciones de errores, a menudo expresados como Historias de Usuario. Es la única fuente de trabajo para el Equipo de Desarrollo.
+- **Sprint Backlog (Pila del Sprint)**:
+  - **Descripción**: Un subconjunto de elementos del Product Backlog que el Equipo de Desarrollo ha seleccionado para el Sprint actual, junto con el plan del equipo para entregar el Incremento y lograr el Sprint Goal. Es un plan muy detallado y visible para el equipo.
+  - **Características**: Solo el Equipo de Desarrollo puede modificarlo, lo que refuerza su auto-organización y su compromiso colectivo con el trabajo del Sprint.
+  - **Responsable**: Equipo de Desarrollo.
 
-Características: Es "DETAILED Appropriately, Estimated, Emergent, Prioritized" (DEEP). Nunca está "terminado", evoluciona constantemente. Es gestionado por el Product Owner, pero su contenido y priorización son el resultado de la colaboración constante con el Equipo de Desarrollo y los stakeholders.
-
-Sprint Backlog (Pila del Sprint):
-
-Descripción: Un subconjunto de elementos del Product Backlog que el Equipo de Desarrollo ha seleccionado para el Sprint actual, junto con el plan del equipo para entregar el Incremento y lograr el Sprint Goal. Es un plan muy detallado y visible para el equipo.
-
-Características: Solo el Equipo de Desarrollo puede modificarlo, lo que refuerza su auto-organización y su compromiso colectivo con el trabajo del Sprint.
-
-Responsable: Equipo de Desarrollo.
-
-Increment (Incremento):
-
-Descripción: La suma de todos los elementos del Product Backlog completados durante un Sprint, más el valor de todos los Increments de los Sprints anteriores. Debe ser un producto funcional, utilizable y potencialmente entregable, independientemente de si se decide lanzarlo al mercado o no.
-
-Características: Es el resultado tangible del trabajo colaborativo del Sprint que cumple la "Definición de Terminado" (Definition of Done), un acuerdo del equipo sobre qué significa que un elemento esté "hecho".
-
-Responsable: Equipo de Desarrollo.
+- **Increment (Incremento)**:
+  - **Descripción**: La suma de todos los elementos del Product Backlog completados durante un Sprint, más el valor de todos los Increments de los Sprints anteriores. Debe ser un producto funcional, utilizable y **potencialmente entregable**, independientemente de si se decide lanzarlo al mercado o no.
+  - **Características**: Es el resultado tangible del trabajo colaborativo del Sprint que cumple la **"Definición de Terminado" (`Definition of Done`)**, un acuerdo del equipo sobre qué significa que un elemento esté "hecho".
+  - **Responsable**: Equipo de Desarrollo.
 
 ### 3.3. Beneficios en el Desarrollo de APIs y Software
 
 La adopción de metodologías ágiles como Scrum ofrece numerosos beneficios que son particularmente relevantes para el desarrollo de APIs y software moderno:
 
-Flexibilidad y Adaptación: Las APIs a menudo tienen requisitos que evolucionan rápidamente a medida que las aplicaciones que las consumen (frontends, móviles) también cambian o surgen nuevas necesidades de negocio. Scrum permite a los equipos responder rápidamente a estos cambios, adaptando el Product Backlog y priorizando en cada Sprint. Esta flexibilidad fomenta una mentalidad de equipo adaptable donde los miembros están preparados para ajustar su enfoque de manera colaborativa.
+- **Flexibilidad y Adaptación**: Las APIs a menudo tienen requisitos que evolucionan rápidamente a medida que las aplicaciones que las consumen (frontends, móviles) también cambian o surgen nuevas necesidades de negocio. Scrum permite a los equipos responder rápidamente a estos cambios, adaptando el `Product Backlog` y priorizando en cada Sprint. Esta flexibilidad fomenta una **mentalidad de equipo adaptable** donde los miembros están preparados para ajustar su enfoque de manera colaborativa.
+- **Entrega Temprana y Continua de Valor**: En lugar de esperar un gran lanzamiento monolítico, el desarrollo de APIs en un enfoque ágil permite entregar _endpoints_ funcionales y módulos de API en incrementos cortos. Esto significa que los equipos de frontend o los clientes de la API pueden comenzar a integrar y probar antes, proporcionando retroalimentación temprana y acelerando el tiempo de comercialización. Esta cadencia de entrega requiere una **colaboración constante y una "Definición de Terminado" clara** dentro del equipo para asegurar que cada incremento sea de alta calidad y esté listo para su uso.
+- **Calidad Asegurada y Pruebas Continuas**: La naturaleza incremental del desarrollo ágil facilita la integración constante y las pruebas tempranas. Al entregar pequeños "incrementos" de software funcional en cada Sprint, el equipo puede realizar **pruebas exhaustivas y continuas** a medida que se construye el producto. Esto permite identificar y corregir defectos más pronto en el ciclo de vida del desarrollo, reduciendo significativamente el costo y el esfuerzo de las correcciones. La capacidad de probar cada incremento asegura que las nuevas funcionalidades de la API se integren sin problemas y funcionen como se espera, mejorando la calidad general del producto de manera progresiva.
+- **Mejora Continua**: Las retrospectivas regulares son una oportunidad invaluable para que el equipo reflexione sobre sus procesos de desarrollo de APIs, herramientas (ej., configuración de CI/CD para APIs), prácticas de codificación (ej., adherencia a principios RESTful) y **dinámicas de equipo**. Esto lleva a una mejora constante de la calidad de la API, de la eficiencia del equipo y de la **cohesión del grupo**. Los equipos ágiles se esfuerzan por aprender y adaptarse juntos.
+- **Colaboración Activa y Transparencia**: Scrum promueve una comunicación constante y fluida, que es el **corazón del trabajo en grupo efectivo**. Para el desarrollo de APIs, esto es vital para colaborar estrechamente con los equipos de frontend, móviles o terceros que serán los consumidores de la API. La transparencia de los artefactos (`Product Backlog`, `Sprint Backlog`) asegura que todos los _stakeholders_ tengan visibilidad del progreso y los desafíos, facilitando una **colaboración más informada y alineada**.
+- **Gestión de Riesgos Reducida**: Al entregar software funcional en ciclos cortos, los riesgos se identifican y abordan más temprano. Si un _endpoint_ de API no funciona como se esperaba o un requisito es malinterpretado, se detecta y corrige rápidamente, evitando grandes retrabajos al final del proyecto. Esta mitigación de riesgos es un esfuerzo **colectivo** del equipo, que inspecciona el progreso diariamente y se adapta para resolver problemas de manera conjunta.
 
-Entrega Temprana y Continua de Valor: En lugar de esperar un gran lanzamiento monolítico, el desarrollo de APIs en un enfoque ágil permite entregar endpoints funcionales y módulos de API en incrementos cortos. Esto significa que los equipos de frontend o los clientes de la API pueden comenzar a integrar y probar antes, proporcionando retroalimentación temprana y acelerando el tiempo de comercialización. Esta cadencia de entrega requiere una colaboración constante y una "Definición de Terminado" clara dentro del equipo para asegurar que cada incremento sea de alta calidad y esté listo para su uso.
+### 3.4. Aplicando Scrum en Equipos Pequeños o Distribuidos
 
-Mejora Continua: Las retrospectivas regulares son una oportunidad invaluable para que el equipo reflexione sobre sus procesos de desarrollo de APIs, herramientas (ej., configuración de CI/CD para APIs), prácticas de codificación (ej., adherencia a principios RESTful) y dinámicas de equipo. Esto lleva a una mejora constante de la calidad de la API, de la eficiencia del equipo y de la cohesión del grupo. Los equipos ágiles se esfuerzan por aprender y adaptarse juntos.
+Scrum es flexible y puede adaptarse tanto a equipos grandes como pequeños, así como a equipos que trabajan de manera remota o distribuida. Para equipos pequeños (3-5 personas), las ceremonias suelen ser más ágiles y la comunicación más directa, pero es igualmente importante mantener la disciplina de los eventos y la transparencia en los artefactos.
 
-Colaboración Activa y Transparencia: Scrum promueve una comunicación constante y fluida, que es el corazón del trabajo en grupo efectivo. Para el desarrollo de APIs, esto es vital para colaborar estrechamente con los equipos de frontend, móviles o terceros que serán los consumidores de la API. La transparencia de los artefactos (Product Backlog, Sprint Backlog) asegura que todos los stakeholders tengan visibilidad del progreso y los desafíos, facilitando una colaboración más informada y alineada.
+#### Recomendaciones para equipos pequeños o distribuidos
 
-Gestión de Riesgos Reducida: Al entregar software funcional en ciclos cortos, los riesgos se identifican y abordan más temprano. Si un endpoint de API no funciona como se esperaba o un requisito es malinterpretado, se detecta y corrige rápidamente, evitando grandes retrabajos al final del proyecto. Esta mitigación de riesgos es un esfuerzo colectivo del equipo, que inspecciona el progreso diariamente y se adapta para resolver problemas de manera conjunta.
+- Utiliza videollamadas para las ceremonias Scrum si el equipo no está en la misma ubicación.
+- Mantén los tableros de tareas y el Product Backlog siempre visibles y actualizados para todos los miembros.
+- Fomenta la comunicación asíncrona (chats, foros) para resolver dudas fuera de las reuniones.
+- Adapta la duración de las ceremonias según el tamaño y madurez del equipo.
+
+#### Herramientas ágiles recomendadas
+
+- [Jira](https://www.atlassian.com/software/jira): Gestión profesional de Sprints, Backlogs y tableros Kanban/Scrum.
+- [Trello](https://trello.com/): Tableros visuales simples y colaborativos, ideales para equipos pequeños.
+- [Azure Boards](https://azure.microsoft.com/en-us/services/devops/boards/): Integración con pipelines y repositorios, útil para equipos que usan Azure DevOps.
+- [ClickUp](https://clickup.com/): Gestión integral de tareas, documentos y Sprints.
+- [Slack](https://slack.com/): Comunicación instantánea y canales temáticos para equipos distribuidos.
+
+El uso de estas herramientas facilita la colaboración, la transparencia y el seguimiento del progreso, especialmente cuando los miembros del equipo no comparten la misma oficina.
+
+## Recursos y Referencias
+
+- [Documentación oficial de Java Records (Oracle)](https://docs.oracle.com/en/java/javase/17/language/records.html)
+- [MapStruct - Documentación oficial](https://mapstruct.org/documentation/stable/reference/html/)
+- [Spring Boot - Documentación](https://docs.spring.io/spring-boot/docs/current/reference/html/)
+- [Scrum Guide (Guía Oficial de Scrum)](https://scrumguides.org/)
+- [Manifiesto Ágil](https://agilemanifesto.org/iso/es/manifesto.html)
+- [Bean Validation (Jakarta Validation)](https://jakarta.ee/specifications/bean-validation/3.0/jakarta-bean-validation-spec-3.0.html)
+- [OpenAPI Specification](https://swagger.io/specification/)
