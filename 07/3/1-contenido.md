@@ -114,6 +114,8 @@ Se recomienda encarecidamente almacenar la clave secreta en un lugar seguro y ac
 
 Un **JSON Web Token (JWT)** es un estándar abierto (RFC 7519) que define una forma compacta, segura y autocontenida de transmitir información de forma confiable entre dos partes como un objeto JSON. Esta confianza se logra porque la información está firmada digitalmente, lo que permite verificar tanto su autenticidad (quién lo emitió) como su integridad (que no ha sido alterado).
 
+[![JWT en 10 minutos](https://markdown-videos-api.jorgenkh.no/youtube/tWQobKFQLG0?width=640&height=360)](https://www.youtube.com/watch?v=tWQobKFQLG0)
+
 ### 2.1. Características Clave de JWT y sus Implicaciones en la Arquitectura
 
 - **Compacto**: La naturaleza de los JWT como cadenas de texto codificadas en Base64Url los hace muy ligeros. Esto es una ventaja significativa, ya que pueden ser enviados eficientemente en cada solicitud HTTP sin añadir una sobrecarga de red considerable. Son ideales para ser incluidos en parámetros POST, o, lo más común y seguro, dentro de un encabezado HTTP, específicamente el encabezado `Authorization`. Su tamaño reducido contribuye a una mejor latencia y rendimiento de las APIs.

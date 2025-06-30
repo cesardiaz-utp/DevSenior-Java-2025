@@ -244,7 +244,9 @@ En el desarrollo de APIs RESTful con Spring Boot, es una práctica común utiliz
 
 ### 2.1. ¿Qué es MapStruct?
 
-**MapStruct** es un generador de código que simplifica el mapeo entre tipos Java. A diferencia de las bibliotecas de mapeo basadas en reflexión (como ModelMapper o Dozer), MapStruct genera las implementaciones de los mappers en tiempo de compilación. Esto ofrece varias ventajas clave:
+![MapStruct](https://adictosaltrabajo.com/wp-content/uploads/2020/03/Captura-de-pantalla-2020-03-25-a-las-11.18.11.png)
+
+[**MapStruct**](https://mapstruct.org/) es un generador de código que simplifica el mapeo entre tipos Java. A diferencia de las bibliotecas de mapeo basadas en reflexión (como ModelMapper o Dozer), MapStruct genera las implementaciones de los mappers en tiempo de compilación. Esto ofrece varias ventajas clave:
 
 - **Rendimiento**: Al generar código Java puro, el mapeo es tan rápido como si lo hubieras escrito a mano, sin la sobrecarga de la reflexión en tiempo de ejecución.
 - **Seguridad en tiempo de compilación**: Si un campo cambia de nombre o tipo en una de tus clases, MapStruct detectará el problema durante la compilación, evitando errores en tiempo de ejecución que podrían ser difíciles de depurar.
@@ -422,13 +424,15 @@ Los principios ágiles adicionales que complementan el manifiesto incluyen la en
 
 ### 3.2. Scrum: Un Marco Ágil Popular
 
+![Scrum](https://www.ilunion.com/sites/default/files/styles/webp/public/2025-01/Etapas_SCRUM_0.jpeg.webp?itok=C3rcVjL9)
+
 **Scrum** es el marco de trabajo ágil más popular y ampliamente adoptado. Es un marco liviano que ayuda a las personas, equipos y organizaciones a generar valor a través de soluciones adaptativas para problemas complejos. Scrum se define por sus roles, eventos y artefactos, que trabajan en conjunto para crear un ciclo de inspección y adaptación continuo.
 
-![Scrum](https://www.ilunion.com/sites/default/files/styles/webp/public/2025-01/Etapas_SCRUM_0.jpeg.webp?itok=C3rcVjL9)
+[![¿Qué es SCRUM?](https://markdown-videos-api.jorgenkh.no/youtube/XDOayQIuC78?width=640&height=360)](https://www.youtube.com/watch?v=XDOayQIuC78)
 
 #### Roles en Scrum (Los 3 Pilares del Equipo Scrum)
 
-![Scrum Roles Stakeholders](https://www.scrum-institute.org/images_scrum/Scrum_Roles_Stakeholders.jpg)
+![Scrum Roles Stakeholders](https://media.deloitte.com/is/image/deloitte/Deloitte-ES-tecnologia-roles-scrum-4x1:Desktop?$Responsive$&fmt=webp&fit=stretch,1&dpr=on,1.25)
 
 - **Product Owner (PO - Propietario del Producto)**
   - **Función Principal**: Es la persona responsable de maximizar el valor del producto que construye el Equipo de Desarrollo. Actúa como el puente entre el cliente/negocio y el equipo.
@@ -460,6 +464,8 @@ Los principios ágiles adicionales que complementan el manifiesto incluyen la en
 
 Los eventos de Scrum son oportunidades fijas en el tiempo (_time-boxed_) para la inspección y adaptación, y son fundamentales para la colaboración efectiva del equipo.
 
+![Los eventos de Scrum](https://media.deloitte.com/is/image/deloitte/Scrum-inforgraphic-2?$Responsive$&wid=1440&fmt=webp&fit=stretch,1&dpr=off)
+
 - **Sprint**: Es el corazón de Scrum y un contenedor de tiempo fijo (generalmente de 1 a 4 semanas, siendo 2 semanas lo más común). Dentro de cada Sprint, todos los demás eventos de Scrum tienen lugar. Un nuevo Sprint comienza inmediatamente después de la finalización del anterior. El objetivo es entregar un "Incremento" de producto potencialmente liberable. El Sprint en sí mismo es una oportunidad para que el equipo trabaje en conjunto de forma ininterrumpida y enfocada.
 
 - **Sprint Planning (Planificación del Sprint)**:
@@ -490,6 +496,8 @@ Los eventos de Scrum son oportunidades fijas en el tiempo (_time-boxed_) para la
 #### Artefactos de Scrum
 
 Los artefactos de Scrum representan el trabajo o el valor para proporcionar transparencia y oportunidades de inspección y adaptación.
+
+![Artefactos Scrum](https://media.deloitte.com/is/image/deloitte/Deloitte-ES-tecnologia-artefactos-Scrum:Desktop?$Responsive$&fmt=webp&fit=stretch,1&dpr=on,1.25)
 
 - **Product Backlog (Pila del Producto)**:
   - **Descripción**: Una lista dinámica, priorizada y ordenada de todo el trabajo que se necesita realizar en el producto. Contiene características, requisitos, mejoras y correcciones de errores, a menudo expresados como Historias de Usuario. Es la única fuente de trabajo para el Equipo de Desarrollo.

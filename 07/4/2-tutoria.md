@@ -1,4 +1,4 @@
-# Tutoría: Implementación de Autenticación con JWT
+# Tutoría: Java Records, MapStruct, el Desarrollo Ágil y Scrum
 
 ## 1. Bienvenida y Recopilación de Dudas Rápidas
 

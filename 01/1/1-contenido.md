@@ -148,7 +148,7 @@ Programar es dar instrucciones a una computadora para que realice tareas especí
 
 - **Pensamiento Algorítmico**: Es la habilidad de descomponer un problema grande en pasos más pequeños y manejables, y luego organizar esos pasos lógicamente para llegar a una solución. ¡Es la base de la programación!
 
-[![como hacer un sandwish de mantequilla de mani y mermelada](https://markdown-videos-api.jorgenkh.no/youtube/cDA3_5982h8)](https://youtu.be/cDA3_5982h8?si=Xmwa_V04HYXLnt4g)
+[![como hacer un sandwish de mantequilla de mani y mermelada](https://markdown-videos-api.jorgenkh.no/youtube/cDA3_5982h8?width=640&height=360)](https://youtu.be/cDA3_5982h8?si=Xmwa_V04HYXLnt4g)
 
 ### 2.2. ¿Que es Java?
 
@@ -369,15 +369,15 @@ Java es un lenguaje compilado e interpretado. Primero, el código fuente (`.java
 
 ### Por esto te cuesta programar
 
-[![Por esto te cuesta programar](https://markdown-videos-api.jorgenkh.no/youtube/c3NRsitewTc)](https://youtu.be/c3NRsitewTc?si=lXzsR94-WEHCDQcK)
+[![Por esto te cuesta programar](https://markdown-videos-api.jorgenkh.no/youtube/c3NRsitewTc?width=640&height=360)](https://youtu.be/c3NRsitewTc?si=lXzsR94-WEHCDQcK)
 
 ## El problema de "Aprender" programación
 
-[![El problema de "Aprender" programación](https://markdown-videos-api.jorgenkh.no/youtube/d1XlxVm2sA0)](https://youtu.be/d1XlxVm2sA0?si=f1DqMOPcOuSv7vu2)
+[![El problema de "Aprender" programación](https://markdown-videos-api.jorgenkh.no/youtube/d1XlxVm2sA0?width=640&height=360)](https://youtu.be/d1XlxVm2sA0?si=f1DqMOPcOuSv7vu2)
 
 ## 5 Errores al Aprender a Programar
 
-[![5 Errores al Aprender a Programar](https://markdown-videos-api.jorgenkh.no/youtube/kgxWf1GFyVI)](https://youtu.be/kgxWf1GFyVI?si=M0oq1u3OJAMx-gbJ)
+[![5 Errores al Aprender a Programar](https://markdown-videos-api.jorgenkh.no/youtube/kgxWf1GFyVI?width=640&height=360)](https://youtu.be/kgxWf1GFyVI?si=M0oq1u3OJAMx-gbJ)
 
 ## Lógica de programación
 
