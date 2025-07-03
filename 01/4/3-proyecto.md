@@ -20,7 +20,6 @@ Tu programa principal (`main`) debe actuar como un orquestador que llama a difer
       1. Registrar datos de un estudiante
       2. Mostrar datos del estudiante actual
       3. Calcular promedio de notas del estudiante actual
-      4. Validar una nota individual
       0. Salir
       Ingrese su opción:
       ```
@@ -82,7 +81,6 @@ Si quieres practicar más y desafiarte, intenta alguna de estas ideas:
 - Agrega una opción para limpiar (borrar) los datos del estudiante actual y dejar el sistema como al inicio.
 - Implementa una función que indique si el estudiante aprobó o reprobó (por ejemplo, si el promedio es mayor o igual a 60).
 - Valida que las notas no solo estén en el rango correcto, sino que además sean números (no letras ni símbolos).
-- Haz que el menú se muestre nuevamente después de cada acción, hasta que el usuario decida salir.
 - Permite que el usuario vea un resumen de los datos antes de confirmar el registro.
 
 Estos desafíos solo requieren lógica, condicionales y funciones. ¡Inténtalo si quieres mejorar tus habilidades!
