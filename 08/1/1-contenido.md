@@ -583,13 +583,13 @@ real-estate-frontend/
 │   │   │   ├── properties/         # Característica: Módulo de propiedades inmobiliarias
 │   │   │   │   ├── components/     # Componentes standalone específicos de la funcionalidad de propiedades
 │   │   │   │   │   ├── property-list/    # Componente standalone para listar propiedades
-│   │   │   │   │   │   ├── property-list.ts    # Archivo de lógica del componente (sin .component)
-│   │   │   │   │   │   ├── property-list.html  # Plantilla HTML del componente (sin .component)
-│   │   │   │   │   │   └── property-list.css   # Estilos del componente (sin .component)
+│   │   │   │   │   │   ├── property-list.ts    # Archivo de lógica del componente
+│   │   │   │   │   │   ├── property-list.html  # Plantilla HTML del componente
+│   │   │   │   │   │   └── property-list.css   # Estilos del componente
 │   │   │   │   │   ├── property-card/    # Componente standalone para mostrar una sola propiedad (reutilizable dentro de 'properties')
-│   │   │   │   │   │   ├── property-card.ts    # Archivo de lógica del componente (sin .component)
-│   │   │   │   │   │   ├── property-card.html  # Plantilla HTML del componente (sin .component)
-│   │   │   │   │   │   └── property-card.css   # Estilos del componente (sin .component)
+│   │   │   │   │   │   ├── property-card.ts    # Archivo de lógica del componente
+│   │   │   │   │   │   ├── property-card.html  # Plantilla HTML del componente
+│   │   │   │   │   │   └── property-card.css   # Estilos del componente
 │   │   │   │   │   └── (otros componentes standalone relacionados con propiedades: detail, form, etc.)
 │   │   │   │   ├── models/         # Interfaces de datos y tipos para propiedades (ej., `Property` interface)
 │   │   │   │   │   └── property.ts
@@ -602,7 +602,7 @@ real-estate-frontend/
 │   │       │                   # Estos también son componentes standalone y se importan directamente.
 │   │       ├── components/     # Componentes UI genéricos (ej. Button, Input, LoadingSpinner)
 │   │       │   └── loading-spinner/
-│   │       │       └── loading-spinner.ts    # Archivo de lógica del componente (sin .component)
+│   │       │       └── loading-spinner.ts    # Archivo de lógica del componente
 │   │       ├── pipes/          # Pipes personalizados (ej. currency, date)
 │   │       │   └── (ej. price-format.ts)
 │   │       └── directives/     # Directivas personalizadas
@@ -758,13 +758,15 @@ Finalmente, aplicaremos todo lo anterior para construir el listado de propiedade
     @Component({
       selector: 'app-property-list',
       imports: [CommonModule], // Importa CommonModule para usar pipes como currency
-      templateUrl: './property-list.html', // Ruta actualizada (sin .component)
-      styleUrl: './property-list.css' // Ruta actualizada (sin .component)
+      templateUrl: './property-list.html', // Ruta actualizada
+      styleUrl: './property-list.css' // Ruta actualizada
     })
     export class PropertyList implements OnInit {
       properties: Property[] = [];
       loading: boolean = true;
       error: string | null = null;
+      allProperties: Property[] = []; // Para guardar todas las propiedades y poder filtrar
+      filterCity: string = ''; 
 
       constructor() { }
 
@@ -816,9 +818,21 @@ Finalmente, aplicaremos todo lo anterior para construir el listado de propiedade
               description: 'Chalet de lujo con amplios espacios y acabados de alta calidad.'
             }
           ];
-          this.properties = simulatedData;
+          this.allProperties = simulatedData; // Guarda todas las propiedades
+          this.properties = this.allProperties; // Inicialmente muestra todas
           this.loading = false;
         }, 1500); // Simula un retraso de 1.5 segundos
+      }
+
+      // Nuevo método para filtrar propiedades
+      filterProperties(): void {
+        if (!this.filterCity) {
+          this.properties = this.allProperties; // Si el filtro está vacío, muestra todas
+        } else {
+          this.properties = this.allProperties.filter(property =>
+            property.city.toLowerCase().includes(this.filterCity.toLowerCase())
+          );
+        }
       }
     }
     ```
@@ -830,6 +844,18 @@ Finalmente, aplicaremos todo lo anterior para construir el listado de propiedade
     ```HTML
     <div class="container mx-auto p-8 bg-gray-50 min-h-screen">
       <h1 class="text-5xl font-extrabold text-center text-gray-900 mb-12 drop-shadow-lg">Ofertas Inmobiliarias</h1>
+
+      <!-- Sección de Filtro -->
+      <div class="mb-8 flex flex-col sm:flex-row items-center justify-center gap-4 p-6 bg-white rounded-xl shadow-md">
+        <input type="text" placeholder="Filtrar por ciudad (ej. Madrid)"
+          class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-lg"
+          [(ngModel)]="filterCity">
+        <button
+          class="w-full sm:w-auto bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors duration-300 shadow-md"
+          (click)="searchProperties()">
+          Buscar
+        </button>
+      </div>
 
       @if (loading) {
         <div class="flex justify-center items-center h-64">
