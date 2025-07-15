@@ -182,7 +182,7 @@ Aquí están las interfaces más comunes y sus métodos:
 
 Comprender y utilizar estos _hooks_ te dará un control preciso sobre el comportamiento de tus componentes a lo largo de su existencia.
 
-```Mermaid
+```mermaid
 graph TD
   A[Constructor] --> B{ngOnChanges?};
   B -- Sí, entradas cambian --> C[ngOnChanges];
