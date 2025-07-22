@@ -22,48 +22,42 @@ Este módulo introduce al estudiante en el desarrolo de interfaces modernas con 
   - Estructura Profesional de Carpetas con Componentes
   - Integración de Tailwind CSS en el Proyecto
 
-### [Clase 02](2) - Gestión de Estado con Signals, Comunicación entre Componentes, Pipes y Formularios Reactivos
+### [Clase 02](2) - Reactividad con Signals y Comunicación entre Componentes
 
 - **Objetivos de aprendizaje**:
+  - Aplicar hooks avanzados del ciclo de vida de los componentes en el contexto de un flujo de detección de cambios optimizado.
   - Implementar la gestión de estado reactivo utilizando Angular Signals.
-  - Comunicar datos entre componentes padre e hijo utilizando `@Input()` y `@Output()` con Signals.
-  - Desarrollar y utilizar pipes personalizados para transformar datos en la plantilla.
-  - Implementar formularios reactivos para la entrada de datos del usuario y validaciones.
+  - Comunicar datos entre componentes padre e hijo utilizando `@Input()`, `@Output()`, `EventEmmiter` y con Signals.
 
 - **Contenidos**:
+  - Ciclo de Vida de Componentes
   - Gestión de Estado con Angular Signals
   - Comunicación entre Componentes
-  - Pipes en Angular
-  - Formularios Reactivos
-  - Validaciones de Formularios Reactivos
 
-### [Clase 03](3) - Enrutamiento, Directivas y Ciclo de Vida de Componentes
+### [Clase 03](3) - Navegación (Routing) y Servicios
 
 - **Objetivos de aprendizaje**:
   - Implementar el enrutamiento en Angular para la navegación entre diferentes vistas.
   - Manejar parámetros de ruta para cargar datos específicos de una vista.
-  - Desarrollar directivas de atributo personalizadas para modificar el comportamiento de elementos del DOM.
-  - Comprender el concepto del flujo Zoneless y sus implicaciones en la detección de cambios.
-  - Aplicar hooks avanzados del ciclo de vida de los componentes en el contexto de un flujo de detección de cambios optimizado.
+  - Inyeccion de dependencias y gestion de datos con servicios.
 
 - **Contenidos**:
   - Enrutamiento
   - Rutas con Parámetros
   - Directivas Personalizadas
-  - Flujo Zoneless
-  - Ciclo de Vida de Componentes
 
-### [Clase 04](4) - Gestión de Estado Compleja, Pruebas Unitarias y Mejores Prácticas
+### [Clase 04](4) - Formularios reactivos, Gestión de Estado Compleja y Mejores Prácticas
 
 - **Objetivos de aprendizaje**:
-  - Implementar patrones avanzados de gestión de estado en Angular utilizando servicios y Signals.
-  - Comprender y aplicar los distintos sistemas de almacenamiento del lado del navegador para persistir el estado del cliente.
-  - Escribir pruebas unitarias para componentes y servicios Angular.
-  - Aplicar mejores prácticas de desarrollo y rendimiento en Angular, incluyendo el uso eficiente de Signals y la preparación para el flujo Zoneless.
-  - Prepararse para la integración con APIs y autenticación en el siguiente módulo.
+  - Diseñar y construir formularios reactivos robustos y reutilizables en Angular.
+  - Validar formularios de manera eficiente utilizando validadores síncronos y asíncronos.
+  - Gestionar el estado complejo de la aplicación mediante servicios y Signals.
+  - Persistir y recuperar el estado del cliente utilizando mecanismos de almacenamiento local.
+  - Aplicar mejores prácticas para optimizar el rendimiento y la mantenibilidad del código Angular.
 
 - **Contenidos**:
-  - Gestión de Estado Compleja con Servicios y Signals
-  - Almacenamiento del Lado del Navegador para la Persistencia del Estado del Cliente
-  - Introducción a las Pruebas Unitarias en Angular
-  - Mejores Prácticas de Desarrollo Angular
+  - Diseño y construcción de formularios reactivos reutilizables
+  - Validación eficiente de formularios (validadores síncronos y asíncronos)
+  - Gestión avanzada de estado con servicios y Signals
+  - Persistencia y recuperación del estado del cliente (almacenamiento local)
+  - Optimización del rendimiento y mantenibilidad en Angular
