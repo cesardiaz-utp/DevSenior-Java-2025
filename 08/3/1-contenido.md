@@ -19,7 +19,6 @@ Al finalizar esta clase, serás capaz de:
 - **Implementar navegación declarativa** (`routerLink`) **y programática** (`Router` service).
 - **Recibir parámetros de ruta** en componentes utilizando la función `input()` (Angular 20+).
 - **Recibir parámetros de ruta** de manera tradicional utilizando `ActivatedRoute`.
-- **Aplicar las mejores prácticas** para la arquitectura de una aplicación Angular.
 
 ## 1. Servicios y Inyección de Dependencias
 
