@@ -20,6 +20,8 @@
 
 ### [Tutoría](2-tutoria.md)
 
-#### [Ejercicio autónomo](3-ejercicio.md)
+1. Discutiendo sobre el Rol de la IA como Asistente en el Desarrollo
+2. Repaso del Backend con Spring Boot
+3. Analisando el consumo de la API con Angular y Signals
 
-#### [Ejercicios adicionales](4-ejercicios_adicionales.md)
+#### [Ejercicio autónomo](3-ejercicio.md)
