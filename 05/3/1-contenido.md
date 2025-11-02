@@ -351,7 +351,7 @@ class GoodConstructionRobot implements Movable, Drilling { // Implementa solo lo
 
 ### 5. Dependency Inversion Principle (DIP)
 
-**Definición:** 
+**Definición:**
 
 1. Los módulos de **alto nivel** (clases que orquestan otras clases) no deben depender de módulos de **bajo nivel** (clases que realizan operaciones detalladas/utilitarias). Ambos deben depender de **abstracciones** (interfaces o clases abstractas).
 2. Las **abstracciones** no deben depender de los **detalles** (implementaciones concretas). Los **detalles** deben depender de las **abstracciones**.
@@ -448,7 +448,7 @@ Los principios SOLID encajan perfectamente con la arquitectura por capas de Spri
 
 ## Conclusión
 
-Los principios SOLID son una brújula para navegar la complejidad del desarrollo de software. 
+Los principios SOLID son una brújula para navegar la complejidad del desarrollo de software.
 
 No son reglas rígidas, sino guías para tomar mejores decisiones de diseño que resulten en código más robusto y flexible.
 
