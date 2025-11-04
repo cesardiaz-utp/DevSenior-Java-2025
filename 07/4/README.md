@@ -15,10 +15,12 @@
     2. Integración y Uso Básico con Spring Boot
     3. Compatibilidad con Java Records
 3. Desarrollo Ágil y Scrum: Organizando Equipos de Software
-    1. ¿Qué es el Desarrollo Ágil?
-    2. Scrum: Un Marco Ágil Popular
-    3. Beneficios en el Desarrollo de APIs y Software
-    4. Aplicando Scrum en Equipos Pequeños o Distribuidos
+    1. Metodologías de desarrollo
+    2. ¿Qué es el Desarrollo Ágil?
+    3. Desarrollo tradicional vs ágil
+    4. Scrum: Un Marco Ágil Popular
+    5. Beneficios en el Desarrollo de APIs y Software
+    6. Aplicando Scrum en Equipos Pequeños o Distribuidos
 
 #### [Tutoría](2-tutoria.md)
 

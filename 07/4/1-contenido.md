@@ -411,7 +411,48 @@ MapStruct funciona de forma nativa con Java Records. Cuando mapeas un Record a o
 
 En el mundo actual del desarrollo de software, la forma en que los equipos organizan su trabajo es tan importante como las tecnologías que utilizan. Las metodologías ágiles, y en particular Scrum, son marcos de trabajo ampliamente adoptados que promueven la entrega incremental y adaptativa de valor.
 
-### 3.1. ¿Qué es el Desarrollo Ágil?
+### 3.1. Metodologías de desarrollo
+
+#### 3.1.1 Cascada (Waterfall)
+
+![Waterfall](https://management.org/wp-content/uploads/2022/03/5-Stages-of-the-Waterfall-Model.jpg)
+
+El modelo en cascada, también conocido como _Waterfall_, es una metodología de desarrollo de software lineal y secuencial. Se caracteriza por dividir el proceso de desarrollo en fases distintas y consecutivas, donde cada fase debe completarse y validarse antes de que la siguiente pueda comenzar. Es un enfoque tradicional que se asemeja a la forma en que se gestionan los proyectos de ingeniería civil o de fabricación, donde los requisitos son estables y bien definidos desde el principio.
+
+**Fases Típicas del Modelo en Cascada:**
+
+1. **Requisitos (Requirements)**: Se recopilan y documentan todos los requisitos del sistema de manera exhaustiva. El objetivo es tener una comprensión completa de lo que el cliente necesita antes de pasar a la siguiente fase.
+2. **Diseño (Design)**: Basándose en los requisitos, se diseña la arquitectura del sistema, la base de datos, la interfaz de usuario y los componentes de software. Se crean diagramas y especificaciones detalladas.
+3. **Implementación (Implementation)**: Los desarrolladores escriben el código del software de acuerdo con las especificaciones de diseño. Cada módulo se desarrolla y se prueba unitariamente.
+4. **Pruebas o verificacion (Testing)**: Una vez que el software está implementado, se realizan pruebas exhaustivas para identificar y corregir defectos. Esto incluye pruebas de integración, pruebas de sistema y pruebas de aceptación.
+5. **Despliegue/Mantenimiento (Deployment/Maintenance)**: El software se entrega al cliente y se pone en producción. La fase de mantenimiento implica la corrección de errores, la mejora del rendimiento y la adaptación a nuevos entornos o requisitos.
+
+**Características y Principios Clave:**
+
+- **Secuencialidad y Linealidad**: Las fases se ejecutan en un orden estricto, una tras otra.
+- **Documentación Exhaustiva**: Cada fase produce una gran cantidad de documentación que sirve como entrada para la siguiente fase.
+- **Planificación Detallada**: Se realiza una planificación muy detallada al inicio del proyecto.
+- **Poca Flexibilidad al Cambio**: Una vez que una fase se completa y se "congela", es muy costoso y difícil volver atrás para realizar cambios en fases anteriores.
+- **Entrega Única**: El producto final se entrega al cliente solo al final del ciclo de vida del proyecto.
+
+#### 3.1.2 Rational Unified Process (RUP)
+
+![RUP](https://ingsoftw123.wordpress.com/wp-content/uploads/2013/11/4276c-diagramageneralderup.png)
+
+El Proceso Unificado de Rational (RUP) es una metodología de desarrollo de software que proporciona un enfoque disciplinado para asignar tareas y responsabilidades dentro de una organización de desarrollo. Su objetivo es producir software de alta calidad que satisfaga las necesidades de sus usuarios finales dentro de un cronograma y presupuesto predecibles.
+
+RUP se basa en un conjunto de principios y mejores prácticas clave, como el desarrollo iterativo, la gestión de requisitos, el uso de arquitecturas basadas en componentes, el modelado visual del software, la verificación de la calidad del software y el control de cambios en el software.
+
+El ciclo de vida de RUP consta de cuatro fases secuenciales:
+
+1. **Inicio**: En esta fase, se define el alcance del proyecto y se crea un caso de negocio.
+2. **Elaboración**: En esta fase, se analiza el dominio del problema, se establece una base arquitectónica, se desarrolla el plan del proyecto y se eliminan los elementos de mayor riesgo del proyecto.
+3. **Construcción**: En esta fase, todos los componentes y características restantes se desarrollan e integran en el producto, y todas las características se prueban a fondo.
+4. **Transición**: En esta fase, el software se implementa en la comunidad de usuarios.
+
+Cada fase consta de una o más iteraciones, en las que se produce una versión ejecutable del software. Este enfoque iterativo permite la retroalimentación temprana del usuario y la adaptación a los requisitos cambiantes.
+
+### 3.2. ¿Qué es el Desarrollo Ágil?
 
 El Desarrollo Ágil es una filosofía de desarrollo de software que enfatiza la flexibilidad, la colaboración, la entrega continua y la adaptación al cambio. Nació como una respuesta a las limitaciones de las metodologías tradicionales ("cascada"), que a menudo resultaban en proyectos lentos, inflexibles y que no satisfacían las necesidades cambiantes del cliente. Se basa en los valores y principios del Manifiesto Ágil, publicado en 2001:
 
@@ -422,7 +463,35 @@ El Desarrollo Ágil es una filosofía de desarrollo de software que enfatiza la 
 
 Los principios ágiles adicionales que complementan el manifiesto incluyen la entrega temprana y continua de software valioso, la auto-organización de los equipos, la búsqueda constante de la excelencia técnica, la simplicidad y la reflexión regular para ajustar y mejorar el proceso.
 
-### 3.2. Scrum: Un Marco Ágil Popular
+### 3.3. Desarrollo tradicional vs ágil
+
+La gestión ágil, es cada vez más popular como una alternativa a las metodologías tradicionales de gestión de proyectos, especialmente entre los equipos de desarrollo de software y TI. Cuando intenta decidir qué metodología de gestión de proyectos utilizar, es importante comprender algunas de las diferencias clave entre los enfoques de gestión de proyectos ágiles y tradicionales, ya que cada uno tiene sus propias ventajas y desventajas.
+
+En todo proyecto existen 3 variables relacionadas, el llamado “triángulo de hierro”:
+
+- **El alcance**, definirá las tareas necesarias para alcanzar las características que deseamos obtener de nuestro producto.
+- **El tiempo**, es la duración aproximada en que se entregará el producto.
+- **El costo**, son los recursos que se van a destinar para la ejecución del proyecto.
+
+![triángulo de hierro](https://anibalgoicochea.com/wp-content/uploads/2012/02/cambio-de-paradigma-con-metodologc3adas-agiles-como-scrum.png)
+
+Implícitamente dentro de este alcance el líder del proyecto debe establecer el ámbito de la calidad y seguridad de nuestro proyecto conociendo cuál es el alcance del proyecto, el tiempo requerido y del presupuesto con el que cuenta para completarlo.
+
+| Característica | Desarrollo Tradicional (Cascada) | Desarrollo Ágil |
+| --- | --- | --- |
+| **Enfoque** | Lineal y secuencial. Las fases se completan una tras otra. | Iterativo e incremental. El proyecto se divide en pequeños ciclos (sprints). |
+| **Planificación** | Exhaustiva y por adelantado. Los requisitos se definen al inicio. | Flexible y adaptable. Los requisitos pueden cambiar durante el proyecto. |
+| **Entregas** | Se entrega un único producto final al terminar el proyecto. | Se realizan entregas funcionales y parciales al final de cada iteración. |
+| **Cliente** | Participación limitada, principalmente al inicio y al final del proyecto. | Colaboración y comunicación constante con el equipo de desarrollo. |
+| **Cambios** | Difíciles y costosos de implementar una vez que una fase ha terminado. | Son bienvenidos y se gestionan en cada iteración. |
+| **Documentación** | Extensa y detallada desde el principio. | La necesaria para el desarrollo, se valora más el software funcional. |
+
+#### ¿Cuándo usar cada uno?
+
+- **Desarrollo Tradicional**: Es adecuado para proyectos con requisitos muy claros, estables y bien definidos desde el principio, donde el riesgo de cambios es bajo. Por ejemplo, la construcción de un edificio.
+- **Desarrollo Ágil**: Es ideal para proyectos en entornos cambiantes, donde los requisitos no están completamente definidos o pueden variar. Es muy utilizado en el desarrollo de software, ya que permite una rápida adaptación y entrega de valor al cliente.
+
+### 3.4. Scrum: Un Marco Ágil Popular
 
 ![Scrum](https://www.ilunion.com/sites/default/files/styles/webp/public/2025-01/Etapas_SCRUM_0.jpeg.webp?itok=C3rcVjL9)
 
@@ -514,7 +583,7 @@ Los artefactos de Scrum representan el trabajo o el valor para proporcionar tran
   - **Características**: Es el resultado tangible del trabajo colaborativo del Sprint que cumple la **"Definición de Terminado" (`Definition of Done`)**, un acuerdo del equipo sobre qué significa que un elemento esté "hecho".
   - **Responsable**: Equipo de Desarrollo.
 
-### 3.3. Beneficios en el Desarrollo de APIs y Software
+### 3.5. Beneficios en el Desarrollo de APIs y Software
 
 La adopción de metodologías ágiles como Scrum ofrece numerosos beneficios que son particularmente relevantes para el desarrollo de APIs y software moderno:
 
@@ -525,7 +594,7 @@ La adopción de metodologías ágiles como Scrum ofrece numerosos beneficios que
 - **Colaboración Activa y Transparencia**: Scrum promueve una comunicación constante y fluida, que es el **corazón del trabajo en grupo efectivo**. Para el desarrollo de APIs, esto es vital para colaborar estrechamente con los equipos de frontend, móviles o terceros que serán los consumidores de la API. La transparencia de los artefactos (`Product Backlog`, `Sprint Backlog`) asegura que todos los _stakeholders_ tengan visibilidad del progreso y los desafíos, facilitando una **colaboración más informada y alineada**.
 - **Gestión de Riesgos Reducida**: Al entregar software funcional en ciclos cortos, los riesgos se identifican y abordan más temprano. Si un _endpoint_ de API no funciona como se esperaba o un requisito es malinterpretado, se detecta y corrige rápidamente, evitando grandes retrabajos al final del proyecto. Esta mitigación de riesgos es un esfuerzo **colectivo** del equipo, que inspecciona el progreso diariamente y se adapta para resolver problemas de manera conjunta.
 
-### 3.4. Aplicando Scrum en Equipos Pequeños o Distribuidos
+### 3.6. Aplicando Scrum en Equipos Pequeños o Distribuidos
 
 Scrum es flexible y puede adaptarse tanto a equipos grandes como pequeños, así como a equipos que trabajan de manera remota o distribuida. Para equipos pequeños (3-5 personas), las ceremonias suelen ser más ágiles y la comunicación más directa, pero es igualmente importante mantener la disciplina de los eventos y la transparencia en los artefactos.
 

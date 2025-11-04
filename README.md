@@ -51,17 +51,17 @@
 
 ## [Modulo 08](08) - React JS Moderno – Interfaces Dinámicas para Aplicaciones Full Stack
 
-* [Clase 1](08/1): Introducción a React con Vite, Hooks y estructura moderna.
-* [Clase 2](08/2): Componentes, Props, Formularios y Manejo de Eventos.
-* [Clase 3](08/3): Ruteo, Estado Global y Manejo de Autenticación con JWT.
-* [Clase 4](08/4): Proyecto Frontend Integrador – Panel de Gestión con React.
+* [Clase 1](08/1): Introducción a Angular, CLI, Componentes y Estructura Moderna.
+* [Clase 2](08/2): Reactividad con Signals y Comunicación entre Componentes.
+* [Clase 3](08/3): Navegación (Routing) y Servicios.
+* [Clase 4](08/4): Formularios reactivos, Gestión de Estado Compleja y Mejores Prácticas.
 
-## [Modulo 09](09) - Integración Full Stack Moderna – Spring Boot + React con Seguridad JWT
+## [Modulo 09](09) - Integración Full Stack Moderna – Spring Boot + Angular con Seguridad JWT
 
-* [Clase 1](09/1): Conexión Full Stack – Arquitectura y Flujo de Comunicación.
-* [Clase 2](09/2): CRUD Real en Aplicación Universitaria – Cursos y Estudiantes.
-* [Clase 3](09/3): Diseño Visual, Accesibilidad y Modularización de Vistas.
-* [Clase 4](09/4): Proyecto Real Full Stack – Sistema de Gestión Académica.
+* [Clase 1](09/1): El Rol de la IA y Conexión Frontend-Backend.
+* [Clase 2](09/2): Seguridad en la Integración: JWT, Interceptores y Guards.
+* [Clase 3](09/3): Proyecto Integrador con IA: Sistema de Creación y Diligenciamiento de Exámenes.
+* [Clase 4](09/4): Comunicación en Tiempo Real con WebSockets para una Experiencia Interactiva.
 
 ## [Modulo 10](10) - Testing, Calidad y Buenas Prácticas para Aplicaciones Profesionales
 
@@ -83,3 +83,7 @@
 * [Clase 2](12/2): Desarrollo Guiado del Sistema – Backend, Frontend y Automatización.
 * [Clase 3](12/3): Despliegue Final y Documentación Técnica del Proyecto.
 * [Clase 4](12/4): Defensa Técnica del Proyecto + Preparación Profesional para el Empleo.
+
+## Anexos
+
+* [Curso básico de HTML/CSS](html_css)
